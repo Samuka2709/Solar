@@ -35,13 +35,19 @@ export async function entrada(hero, imagensNuvens) {
   const q = (s) => palco.querySelector(s);
   const qa = (s) => [...palco.querySelectorAll(s)];
 
-  // Espera ilha, nuvens visíveis e fontes (no máximo 3 s)
+  /*
+   * Celular: espera curta (só ilha e fontes, no máximo 1,2 s) e entrada ~35% mais
+   * curta. Na gravação de um celular real, a espera longa deixava a tela parada e
+   * a entrada de 4 s era a janela em que o aparelho, ainda carregando, engasgava.
+   */
+  const celular = matchMedia('(max-width: 760px)').matches;
+  const k = celular ? 0.65 : 1;
   const espera = Promise.all([
     carregou(q('.ilha__img')),
-    ...imagensNuvens.filter((i) => i.loading !== 'lazy').map(carregou),
+    ...(celular ? [] : imagensNuvens.filter((i) => i.loading !== 'lazy').map(carregou)),
     document.fonts?.ready ?? Promise.resolve(),
   ]);
-  await Promise.race([espera, new Promise((ok) => setTimeout(ok, 3000))]);
+  await Promise.race([espera, new Promise((ok) => setTimeout(ok, celular ? 1200 : 3000))]);
 
   const A = palco.clientHeight;
   const animacoes = [];
@@ -49,8 +55,8 @@ export async function entrada(hero, imagensNuvens) {
     if (!el) return;
     animacoes.push(
       el.animate([de, { opacity: 1, transform: 'none' }], {
-        duration: duracao * 1000,
-        delay: inicio * 1000,
+        duration: duracao * 1000 * k,
+        delay: inicio * 1000 * k,
         easing: curva,
         fill: 'backwards',
       })
@@ -59,7 +65,7 @@ export async function entrada(hero, imagensNuvens) {
   const sobe = (y, opacidade = 0) => ({ opacity: opacidade, transform: `translate3d(0, ${y}px, 0)` });
 
   // tempos em segundos, os mesmos da versão anterior (CLAUDE.md)
-  anima(q('.camada--ceu .camada__in'), { opacity: 0, transform: 'none' }, { inicio: 0, duracao: 1.4, curva: POWER2_IN_OUT });
+  if (!celular) anima(q('.camada--ceu .camada__in'), { opacity: 0, transform: 'none' }, { inicio: 0, duracao: 1.4, curva: POWER2_IN_OUT });
   anima(q('.camada--longe .camada__in'), sobe(40), { inicio: 0.3, duracao: 2.2 });
   anima(q('.camada--horizonte .camada__in'), sobe(70), { inicio: 0.45, duracao: 2.4 });
   anima(
@@ -86,7 +92,7 @@ export async function entrada(hero, imagensNuvens) {
   palco.classList.add('entrando');
   raiz.classList.remove('js-entrada');
 
-  contarHud(palco, 1.3);
+  contarHud(palco, 1.3 * k);
   Promise.all(animacoes.map((a) => a.finished)).then(() => palco.classList.remove('entrando'), () => {});
   return animacoes;
 }

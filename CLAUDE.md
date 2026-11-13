@@ -63,7 +63,8 @@ Filtros: longe `saturate(.78) brightness(1.03) contrast(.86)`; horizonte `satura
 - Véu: opacidade `smoothstep(.5, .9, p)`. Fechamento com `margin-top: -45svh` e um `::before` de 45svh acima dele (gradiente transparente → creme 2), sem isso no movimento reduzido. Sombra de nuvem: `1 − smoothstep(.02, .3, p)`. Ilha (opacidade da camada): `1 − smoothstep(.28, .58, p)`. Texto: sobe `p·0,62·A`, opacidade `1 − smoothstep(.02, .3, p)`, `visibility: hidden` acima de 0,32. HUD: `1 − smoothstep(0, .22, p)`. Nav tinta cheia acima de 0,82. Nav some ao descer (> 4 px de diferença, abaixo de 40 px de scroll ela sempre aparece) e volta ao subir ou ao receber foco: `translate(-50%, calc(-100% - 24px))` + opacidade 0, transição de 0,6 s.
 - Só escreva estilos quando cursor, `p` ou altura mudarem (compare uma chave com os valores arredondados).
 
-## Entrada — tempos (GSAP, `expo.out` salvo indicação)
+## Entrada — tempos (Web Animations API em `src/motion/entrada.js`, `expo.out` salvo indicação)
+No celular (≤ 760 px) todos os tempos × 0,65, o céu já está pintado desde o início (sem fade) e a espera antes da entrada é só ilha + fontes, no máximo 1,2 s.
 céu 0 s (1,4 s, `power2.inOut`) · longe 0,3 s (de y 40) · horizonte 0,45 s (de y 70) · ilha 0,6 s (de y 0,2·A e escala 0,94, 2,8 s, `power3.out`) · frente 0,8 s (de y 130) · letras 1,15 s (`yPercent` 115 → 0, 1,4 s, 65 ms entre letras) · nav e HUD 1,3 s · contagem do HUD 1,3 s (1,9 s, `power2.out`) · linhas do texto 1,4 s · asterisco 1,55 s (de escala 0 e −140°) · botão 1,7 s · dica 2,3 s.
 Estado inicial aplicado antes do primeiro quadro (`gsap.set`), senão a cena pisca pronta antes de entrar.
 

@@ -363,6 +363,16 @@
   transform: translateY(115%);
 }
 
+/*
+ * Celular: o céu já está na primeira pintura. Esperando a ilha carregar, a tela
+ * mostra céu (calmo), e não um fundo creme com uma ilha fantasma parada.
+ */
+@media (max-width: 760px) {
+  .js-entrada .camada--ceu .camada__in {
+    opacity: 1;
+  }
+}
+
 /* A ilha já aparece apagada na névoa, mais baixa: conta como LCP desde a primeira pintura */
 .js-entrada .camada--ilha .camada__in {
   opacity: 0.3;
