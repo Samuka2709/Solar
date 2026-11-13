@@ -1,0 +1,493 @@
+/* ================= Hero: a casa solta no céu ================= */
+.hero {
+  position: relative;
+  height: 200svh;
+  background: var(--creme-2);
+  color: var(--creme);
+}
+
+.palco {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--nevoa);
+  isolation: isolate;
+}
+
+.camada {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.camada__in {
+  position: absolute;
+  inset: 0;
+}
+
+.camada--ilha {
+  transform-origin: 51.5% 40%;
+}
+
+.camada--frente {
+  transform-origin: 50% 85%;
+}
+
+/* O muro começa fora da tela, antes do JS */
+.camada--muro {
+  transform: translate3d(0, 120%, 0);
+}
+
+/* ---------- 1. Céu ---------- */
+.ceu {
+  position: absolute;
+  inset: -6% -4% -40%;
+  background:
+    radial-gradient(ellipse 34% 30% at 88% 6%, rgba(255, 244, 214, 0.55), rgba(255, 236, 196, 0.16) 45%, transparent 72%),
+    radial-gradient(ellipse 90% 26% at 50% 66%, rgba(250, 222, 184, 0.5), transparent 70%),
+    linear-gradient(180deg, var(--ceu-1) 0%, var(--ceu-2) 20%, var(--ceu-3) 42%, var(--ceu-4) 58%, var(--ceu-5) 72%, var(--nevoa) 88%);
+}
+
+.serra {
+  position: absolute;
+  left: -4%;
+  width: 108%;
+  top: 47%;
+  height: 12%;
+  opacity: 0.42;
+  filter: blur(1.5px);
+  -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent 92%);
+  mask-image: linear-gradient(180deg, #000 30%, transparent 92%);
+}
+
+/* ---------- Nuvens ---------- */
+.nuvens {
+  position: absolute;
+  inset: 0;
+}
+
+.nuvem {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+  animation: deriva linear infinite;
+  transform: translate3d(var(--x0, 0px), 0, 0);
+}
+
+.nuvem img {
+  width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.nuvem--e img {
+  transform: scaleX(-1);
+}
+
+@keyframes deriva {
+  from {
+    transform: translate3d(var(--de), 0, 0);
+  }
+  to {
+    transform: translate3d(var(--ate), 0, 0);
+  }
+}
+
+.palco.pausado .nuvem,
+.palco.pausado .ilha__flutua,
+.palco.pausado .nome__asterisco,
+.pausado .nuvem {
+  animation-play-state: paused;
+}
+
+/* ---------- Névoas: a ponta de baixo nunca entra na tela ---------- */
+.nevoa {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  pointer-events: none;
+}
+
+.nevoa--horizonte {
+  top: 64%;
+  bottom: -200%;
+  background: linear-gradient(180deg, rgba(232, 214, 196, 0) 0%, rgba(232, 214, 196, 0.55) 6%, rgba(232, 214, 196, 0.88) 13%, rgba(232, 214, 196, 0.95) 20%);
+}
+
+.nevoa--frente {
+  top: 80%;
+  bottom: -300%;
+  background: linear-gradient(180deg, rgba(232, 216, 200, 0) 0%, rgba(232, 216, 200, 0.5) 3%, rgba(232, 216, 200, 0.85) 7%);
+}
+
+.nevoa--muro {
+  top: 74%;
+  bottom: -200%;
+  background: linear-gradient(180deg, rgba(241, 231, 214, 0) 0%, rgba(241, 231, 214, 0.75) 4%, var(--creme-2) 9%);
+}
+
+/* ---------- 4. Ilha ---------- */
+.ilha {
+  position: absolute;
+  left: 51.5%;
+  top: 40.5%;
+  width: min(62vw, 96svh);
+  aspect-ratio: 1446 / 994;
+  transform: translate(-50%, -50%);
+}
+
+.ilha__nevoa {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 46%;
+  height: 52%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(250, 238, 216, 0.85), rgba(243, 227, 200, 0.4) 55%, transparent);
+  filter: blur(28px);
+}
+
+.ilha__flutua {
+  position: absolute;
+  inset: 0;
+  animation: flutua 7.5s var(--ease-in-out) infinite alternate;
+  will-change: transform;
+}
+
+@keyframes flutua {
+  from {
+    transform: translate3d(0, -0.8%, 0) rotate(-0.3deg);
+  }
+  to {
+    transform: translate3d(0, 0.8%, 0) rotate(0.3deg);
+  }
+}
+
+.ilha__img {
+  width: 100%;
+  height: auto;
+  filter: saturate(0.88) contrast(0.96);
+}
+
+.ilha__luz {
+  position: absolute;
+  inset: 0;
+  /* a máscara só pinta tons suaves: a versão de 800 px basta */
+  -webkit-mask: url('/img/ilha-800.webp') center / 100% 100% no-repeat;
+  mask: url('/img/ilha-800.webp') center / 100% 100% no-repeat;
+  background:
+    linear-gradient(0deg, rgba(243, 227, 200, 0.36) 0%, rgba(243, 227, 200, 0.16) 25%, rgba(243, 227, 200, 0) 34%),
+    linear-gradient(90deg, rgba(58, 120, 180, 0.16) 0%, rgba(58, 120, 180, 0.06) 30%, rgba(58, 120, 180, 0) 50%);
+}
+
+/* ---------- 6. Sombra de nuvem (parada, do tamanho do palco) ---------- */
+.sombra,
+.sombra__in,
+.sombra__tom {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sombra__tom {
+  background:
+    radial-gradient(ellipse 40% 36% at 84% 86%, rgba(22, 36, 60, 0.4), rgba(22, 36, 60, 0.18) 50%, rgba(22, 36, 60, 0) 78%),
+    radial-gradient(ellipse 52% 30% at 26% 90%, rgba(22, 36, 60, 0.2), rgba(22, 36, 60, 0) 72%),
+    linear-gradient(0deg, rgba(22, 36, 60, 0.3) 0%, rgba(22, 36, 60, 0.12) 18%, rgba(22, 36, 60, 0) 36%);
+}
+
+/* ---------- Véu creme 2 da saída ---------- */
+.veu {
+  position: absolute;
+  inset: 0;
+  background: var(--creme-2);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- HUD ---------- */
+.hud {
+  position: absolute;
+  inset: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 22px var(--margem) 0;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
+  color: var(--creme);
+  text-shadow: 0 1px 2px rgba(20, 35, 58, 0.35), 0 0 14px rgba(20, 35, 58, 0.3);
+  pointer-events: none;
+}
+
+.hud__linha {
+  display: block;
+}
+
+.hud__dir {
+  text-align: right;
+}
+
+/* ---------- Texto e interface ---------- */
+.hero__texto {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  align-content: end;
+  column-gap: 32px;
+  padding: 0 var(--margem) 7.4svh;
+  will-change: transform, opacity;
+}
+
+.nome {
+  font-size: min(17.6vw, 31svh);
+  font-weight: 560;
+  letter-spacing: -0.055em;
+  line-height: 1;
+  color: var(--creme);
+  margin-left: -0.04em;
+}
+
+.nome__linha {
+  display: block;
+  overflow: hidden;
+  padding-top: 0.06em;
+  /* folga para o tracking negativo da última letra não cortar */
+  padding-right: 0.06em;
+  white-space: nowrap;
+}
+
+.nome__letra {
+  display: inline-block;
+}
+
+.nome__sol {
+  display: inline-block;
+  width: 0.29em;
+  height: 0.29em;
+  margin-left: 0.07em;
+  vertical-align: 0.43em;
+  color: var(--sol);
+}
+
+.nome__asterisco {
+  width: 100%;
+  height: 100%;
+  animation: gira 48s linear infinite;
+}
+
+@keyframes gira {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hero__lado {
+  justify-self: end;
+  padding-bottom: calc(min(17.6vw, 31svh) * 0.075);
+}
+
+.hero__frase {
+  font-size: clamp(1rem, 1.38vw, 1.4rem);
+  font-weight: 460;
+  line-height: 1.24;
+  letter-spacing: -0.012em;
+  text-shadow: 0 1px 2px rgba(20, 35, 58, 0.32), 0 2px 18px rgba(20, 35, 58, 0.55);
+}
+
+.linha {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.linha__in {
+  display: block;
+}
+
+.hero__acoes {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 26px;
+}
+
+.hero__obras {
+  color: var(--creme);
+  text-shadow: 0 1px 2px rgba(20, 35, 58, 0.4), 0 2px 14px rgba(20, 35, 58, 0.45);
+}
+
+.dica {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  font-size: 11.5px;
+  color: var(--creme);
+  opacity: 0.86;
+  text-shadow: 0 1px 2px rgba(20, 35, 58, 0.4);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ---------- Estado antes da entrada (evita a cena piscar pronta) ---------- */
+.js-entrada .camada--ceu .camada__in,
+.js-entrada .camada--longe .camada__in,
+.js-entrada .camada--horizonte .camada__in,
+.js-entrada .camada--frente .camada__in,
+.js-entrada .sombra__in,
+.js-entrada .hud__in,
+.js-entrada .nome__sol,
+.js-entrada .hero__acoes,
+.js-entrada .dica,
+.js-entrada .nav__in {
+  opacity: 0;
+}
+
+.js-entrada .nome__letra,
+.js-entrada .linha__in {
+  transform: translateY(115%);
+}
+
+/* A ilha já aparece apagada na névoa, mais baixa: conta como LCP desde a primeira pintura */
+.js-entrada .camada--ilha .camada__in {
+  opacity: 0.3;
+  transform: translateY(20svh) scale(0.94);
+  transform-origin: 51.5% 40%;
+}
+
+.hero__obras {
+  white-space: nowrap;
+}
+
+/* ---------- Tablet: texto empilhado, HUD abaixo da nav ---------- */
+@media (max-width: 960px) {
+  .hero__texto {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__lado {
+    justify-self: start;
+    padding-bottom: 0;
+    margin-top: 10px;
+  }
+
+  .hud {
+    padding-top: calc(14px + 48px + 14px);
+  }
+}
+
+/* ---------- Celular ---------- */
+@media (max-width: 760px) {
+  .hero {
+    height: 185svh;
+  }
+
+  .ilha {
+    left: 50%;
+    top: 32%;
+    width: 98vw;
+  }
+
+  .hero__texto {
+    grid-template-columns: 1fr;
+    padding: 0 var(--margem) calc(22px + env(safe-area-inset-bottom));
+  }
+
+  .nome {
+    font-size: 29vw;
+  }
+
+  .hero__lado {
+    justify-self: start;
+    padding-bottom: 0;
+    margin-top: 6px;
+  }
+
+  .hero__frase {
+    font-size: 16px;
+  }
+
+  .hero__acoes {
+    margin-top: 18px;
+    gap: 18px;
+  }
+
+  .hud {
+    top: calc(14px + 44px + 12px);
+    padding-top: 0;
+    font-size: 11px;
+  }
+
+  .dica {
+    display: none;
+  }
+
+  .sombra__tom {
+    background:
+      radial-gradient(ellipse 80% 34% at 30% 84%, rgba(22, 36, 60, 0.42), rgba(22, 36, 60, 0.18) 55%, rgba(22, 36, 60, 0) 80%),
+      linear-gradient(0deg, rgba(22, 36, 60, 0.32) 0%, rgba(22, 36, 60, 0.14) 22%, rgba(22, 36, 60, 0) 46%),
+      linear-gradient(180deg, rgba(22, 36, 60, 0.18) 0%, rgba(22, 36, 60, 0) 18%);
+  }
+}
+
+/* ---------- Movimento reduzido: hero parado, inteiro, sem prender ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    height: auto;
+  }
+
+  .palco {
+    position: relative;
+    height: 100svh;
+  }
+
+  .palco::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 22svh;
+    background: linear-gradient(180deg, rgba(241, 231, 214, 0), var(--creme-2));
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero__texto {
+    padding-bottom: calc(7.4svh + 6svh);
+    z-index: 2;
+  }
+
+  .hud {
+    z-index: 2;
+  }
+
+  .nuvem {
+    animation: none;
+  }
+
+  .ilha__flutua,
+  .nome__asterisco {
+    animation: none;
+  }
+
+  .camada--muro,
+  .veu,
+  .dica {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (max-width: 760px) {
+  .hero__texto {
+    padding-bottom: calc(22px + 6svh + env(safe-area-inset-bottom));
+  }
+}

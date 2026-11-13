@@ -1,0 +1,345 @@
+.obras__cabeca {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px 40px;
+}
+
+.obras__cabeca .titulo-secao {
+  max-width: 13ch;
+}
+
+.obras__grade {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-flow: dense;
+  gap: clamp(28px, 3vw, 44px) clamp(16px, 2vw, 28px);
+  margin-top: clamp(40px, 5vw, 72px);
+  transition: opacity 200ms var(--ease-out);
+}
+
+.obras__grade--saindo {
+  opacity: 0;
+  transition-duration: 150ms;
+}
+
+.obra {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.obra--grande {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+@media (min-width: 901px) {
+  .obra--larga {
+    grid-column: span 2;
+  }
+
+  .obra--larga .obra__foto {
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+}
+
+.obra__foto {
+  position: relative;
+  flex: 1 1 auto;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--creme-2);
+}
+
+.obra--grande .obra__foto {
+  aspect-ratio: auto;
+  min-height: 0;
+}
+
+.obra__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.obra__moldura {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+  color: rgba(20, 35, 58, 0.42);
+  font-size: 14px;
+}
+
+.obra__silhueta {
+  width: clamp(110px, 40%, 240px);
+  height: auto;
+  color: rgba(20, 35, 58, 0.34);
+}
+
+.obra__selo {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: var(--tinta-2);
+}
+
+.obra__selo .selo {
+  background: var(--creme);
+  opacity: 0.9;
+  border-color: transparent;
+}
+
+.obra__info {
+  padding-top: 14px;
+}
+
+.obra__lugar {
+  font-size: 18px;
+  font-weight: 540;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.obra--grande .obra__lugar {
+  font-size: clamp(20px, 1.8vw, 26px);
+}
+
+.obra__abrir {
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-weight: inherit;
+  letter-spacing: inherit;
+}
+
+/* o card inteiro abre o detalhe */
+.obra__abrir::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+}
+
+.obra__abrir:focus-visible {
+  outline: none;
+}
+
+.obra__abrir:focus-visible::after {
+  outline: 2px solid var(--tinta);
+  outline-offset: 4px;
+}
+
+.obra__dados {
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: var(--tinta-2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .obra__foto {
+    transition: transform 240ms var(--ease-out);
+  }
+
+  .obra:hover .obra__foto {
+    transform: scale(0.99);
+  }
+
+  .obra:hover .obra__abrir {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
+}
+
+@media (max-width: 900px) {
+  .obras__grade {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .obra--grande {
+    grid-column: span 2;
+    grid-row: auto;
+  }
+
+  .obra--grande .obra__foto {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 560px) {
+  .obras__grade {
+    grid-template-columns: 1fr;
+  }
+
+  .obra--grande {
+    grid-column: auto;
+  }
+}
+
+/* ---------- Diálogo ---------- */
+.obra-dialogo {
+  width: min(920px, calc(100vw - 32px));
+  max-height: calc(100svh - 48px);
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  background: var(--creme);
+  color: var(--tinta);
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out), overlay 200ms allow-discrete,
+    display 200ms allow-discrete;
+}
+
+.obra-dialogo[open] {
+  opacity: 1;
+  transform: none;
+}
+
+@starting-style {
+  .obra-dialogo[open] {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+.obra-dialogo::backdrop {
+  background: rgba(20, 35, 58, 0);
+  transition: background-color 200ms var(--ease-out), overlay 200ms allow-discrete, display 200ms allow-discrete;
+}
+
+.obra-dialogo[open]::backdrop {
+  background: rgba(20, 35, 58, 0.55);
+}
+
+@starting-style {
+  .obra-dialogo[open]::backdrop {
+    background: rgba(20, 35, 58, 0);
+  }
+}
+
+.obra-dialogo__caixa {
+  position: relative;
+  padding: clamp(18px, 3vw, 32px);
+}
+
+.obra-dialogo__fechar {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--creme);
+  color: var(--tinta);
+  transition: transform var(--rapido) var(--ease-out);
+}
+
+.obra-dialogo__fechar svg {
+  width: 16px;
+  height: 16px;
+}
+
+.obra-dialogo__fechar:active {
+  transform: scale(0.97);
+}
+
+.obra-dialogo__fotos {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--creme-2);
+}
+
+.obra-dialogo__fotos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.obra-dialogo__texto {
+  margin-top: 22px;
+}
+
+.obra-dialogo__titulo {
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  font-weight: 520;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.obra-dialogo__exemplo {
+  margin-top: 10px;
+  color: var(--tinta-2);
+  font-size: 15px;
+}
+
+.obra-dialogo__exemplo .selo {
+  margin-right: 6px;
+}
+
+.obra-dialogo__dados {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 22px;
+  border-top: 1px solid var(--fio-claro);
+}
+
+.obra-dialogo__dados div {
+  padding: 14px 14px 0;
+  border-left: 1px solid var(--fio-claro);
+}
+
+.obra-dialogo__dados div:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.obra-dialogo__dados dt {
+  font-size: 12px;
+  color: var(--tinta-2);
+}
+
+.obra-dialogo__dados dd {
+  margin-top: 6px;
+  font-weight: 520;
+}
+
+.obra-dialogo__conta {
+  margin-top: 28px;
+}
+
+.obra-dialogo__contas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+@media (max-width: 640px) {
+  .obra-dialogo__dados {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .obra-dialogo__dados div:nth-child(3) {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .obra-dialogo__dados div:nth-child(n + 3) {
+    margin-top: 14px;
+  }
+}

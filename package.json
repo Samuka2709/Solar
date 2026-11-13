@@ -1,0 +1,22 @@
+{
+  "name": "zenite-site",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5190",
+    "build": "vite build",
+    "preview": "vite preview --port 5191",
+    "assets": "node scripts/gerar-assets.mjs",
+    "shots": "node scripts/prints.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "5.3.0",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "gsap": "3.15.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0",
+    "vite": "8.3.8"
+  }
+}

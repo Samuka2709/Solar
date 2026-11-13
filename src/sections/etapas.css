@@ -1,0 +1,117 @@
+.etapas__titulo {
+  max-width: 14ch;
+}
+
+.regua {
+  position: relative;
+  margin-top: clamp(56px, 7vw, 104px);
+}
+
+.regua__trilho {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 5px;
+  height: 2px;
+  background: var(--fio-claro);
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.regua__fio {
+  position: absolute;
+  inset: 0;
+  background: var(--tinta);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  will-change: transform;
+}
+
+.regua__lista {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.regua__etapa {
+  position: relative;
+  padding-top: 34px;
+}
+
+.regua__marca {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--creme);
+  border: 2px solid var(--tinta);
+}
+
+.regua__dias {
+  font-size: 12.5px;
+  color: var(--tinta-2);
+}
+
+.regua__nome {
+  margin-top: 10px;
+  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
+  font-weight: 540;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.regua__frase {
+  margin-top: 10px;
+  max-width: 28ch;
+  color: var(--tinta-2);
+  font-size: 15.5px;
+  line-height: 1.45;
+}
+
+.etapas__nota {
+  margin-top: clamp(40px, 5vw, 64px);
+  font-size: 14.5px;
+  color: var(--tinta-2);
+}
+
+.etapas__nota .selo {
+  margin-right: 8px;
+}
+
+@media (max-width: 900px) {
+  .regua__trilho {
+    left: 5px;
+    right: auto;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    height: auto;
+  }
+
+  .regua__fio {
+    transform: scaleY(0);
+    transform-origin: 50% 0;
+  }
+
+  .regua__lista {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .regua__etapa {
+    padding-top: 0;
+    padding-left: 34px;
+  }
+
+  .regua__marca {
+    top: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .regua__fio {
+    transform: none !important;
+  }
+}

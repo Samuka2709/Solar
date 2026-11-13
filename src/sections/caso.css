@@ -1,0 +1,129 @@
+/* O caso sobe por cima do fim do hero e sai de dentro da nuvem */
+.caso {
+  z-index: 2;
+  margin-top: -45svh;
+  padding-top: clamp(32px, 4vw, 64px);
+}
+
+.caso::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 45svh;
+  background: linear-gradient(180deg, rgba(241, 231, 214, 0) 0%, rgba(241, 231, 214, 0.5) 40%, rgba(241, 231, 214, 0.86) 72%, var(--creme-2) 100%);
+  pointer-events: none;
+}
+
+.caso__rotulo {
+  font-size: 15px;
+  color: var(--tinta-2);
+  margin-bottom: 18px;
+}
+
+.caso__titulo {
+  max-width: 16ch;
+}
+
+.dados {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin-top: clamp(48px, 6vw, 88px);
+  border-top: 1px solid var(--fio-claro);
+  border-bottom: 1px solid var(--fio-claro);
+}
+
+.dados__item {
+  padding: 22px 20px 26px;
+  border-left: 1px solid var(--fio-claro);
+}
+
+.dados__item:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.dados__rotulo {
+  font-size: 12.5px;
+  color: var(--tinta-2);
+}
+
+.dados__valor {
+  margin-top: 10px;
+  font-size: clamp(1.1rem, 1.5vw, 1.45rem);
+  font-weight: 520;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+
+.caso__nota {
+  max-width: 68ch;
+  margin-top: 18px;
+  font-size: 14.5px;
+  color: var(--tinta-2);
+}
+
+.caso__acao {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px 26px;
+  margin-top: clamp(40px, 5vw, 64px);
+}
+
+.caso__dica {
+  max-width: 34ch;
+  color: var(--tinta-2);
+  font-size: 15.5px;
+}
+
+@media (max-width: 1100px) {
+  .dados {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .dados__item:nth-child(3n + 1) {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .dados__item:nth-child(n + 4) {
+    border-top: 1px solid var(--fio-claro);
+  }
+}
+
+@media (max-width: 760px) {
+  .dados {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dados__item {
+    padding: 18px 14px 20px;
+  }
+
+  .dados__item:nth-child(3n + 1) {
+    border-left: 1px solid var(--fio-claro);
+    padding-left: 14px;
+  }
+
+  .dados__item:nth-child(odd) {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .dados__item:nth-child(n + 3) {
+    border-top: 1px solid var(--fio-claro);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caso {
+    margin-top: 0;
+  }
+
+  .caso::before {
+    display: none;
+  }
+}

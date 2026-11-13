@@ -1,0 +1,69 @@
+.interna__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px var(--margem) 88px;
+  background: linear-gradient(
+    180deg,
+    var(--tinta) 0%,
+    var(--tinta) 42%,
+    color-mix(in oklab, var(--tinta) 55%, var(--creme)) 68%,
+    color-mix(in oklab, var(--tinta) 14%, var(--creme)) 88%,
+    var(--creme) 100%
+  );
+  color: var(--creme);
+  align-items: flex-start;
+}
+
+.interna__topo .link-texto {
+  min-height: 36px;
+}
+
+.interna__marca {
+  font-size: 26px;
+  font-weight: 560;
+  letter-spacing: -0.05em;
+  text-decoration: none;
+}
+
+.interna__topo :focus-visible {
+  outline-color: var(--sol);
+}
+
+.interna {
+  padding-top: clamp(56px, 8vw, 112px);
+}
+
+.interna__texto {
+  max-width: 66ch;
+  margin-top: 40px;
+}
+
+.interna__texto h2 {
+  margin-top: 40px;
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  font-weight: 540;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.interna__texto p {
+  margin-top: 14px;
+}
+
+.interna__resumo {
+  font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+  font-weight: 480;
+  line-height: 1.45;
+}
+
+.interna__nota {
+  margin-top: 40px !important;
+  color: var(--tinta-2);
+  font-size: 15px;
+}
+
+.interna__nota .selo {
+  margin-right: 8px;
+}

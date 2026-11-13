@@ -1,0 +1,439 @@
+.sim__cabeca {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px 40px;
+}
+
+.sim__cabeca .titulo-secao {
+  max-width: 13ch;
+}
+
+.sim__sub {
+  max-width: 34ch;
+  color: var(--creme-suave);
+}
+
+.sim__grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 88px);
+  margin-top: clamp(48px, 6vw, 88px);
+  padding-top: clamp(32px, 4vw, 48px);
+  border-top: 1px solid var(--fio-escuro);
+}
+
+/* ---------- Campos ---------- */
+.campo__rotulo {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.campo__ajuda {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--creme-suave);
+}
+
+.campo__entrada {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(250, 246, 238, 0.32);
+  background: rgba(250, 246, 238, 0.06);
+  color: var(--creme);
+  font-size: 16px;
+  transition: border-color var(--medio) var(--ease-out), background-color var(--medio) var(--ease-out);
+}
+
+.campo__entrada::placeholder {
+  color: rgba(250, 246, 238, 0.5);
+}
+
+.campo__entrada:focus-visible {
+  outline: 2px solid var(--sol);
+  outline-offset: 2px;
+  border-color: transparent;
+}
+
+.campo--erro .campo__entrada {
+  border-color: #ffb4a2;
+}
+
+.campo__erro {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #ffc9bb;
+}
+
+/* ---------- Passo 1 ---------- */
+.sim__reais {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  border-bottom: 1px solid rgba(250, 246, 238, 0.32);
+  padding-bottom: 6px;
+}
+
+.sim__reais:focus-within {
+  border-bottom-color: var(--sol);
+}
+
+.sim__cifrao {
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  font-weight: 460;
+  color: var(--creme-suave);
+}
+
+.sim__valor {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--creme);
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  font-weight: 520;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.sim__valor:focus-visible {
+  outline: 2px solid var(--sol);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.sim__faixa {
+  margin-top: 28px;
+}
+
+.sim__faixa input[type='range'] {
+  width: 100%;
+  height: 44px;
+  margin: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  --pos: 25%;
+}
+
+.sim__faixa input[type='range']::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--creme) var(--pos), rgba(250, 246, 238, 0.22) var(--pos));
+}
+
+.sim__faixa input[type='range']::-moz-range-track {
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--creme) var(--pos), rgba(250, 246, 238, 0.22) var(--pos));
+}
+
+.sim__faixa input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  margin-top: -10px;
+  border-radius: 50%;
+  background: var(--creme);
+  border: 0;
+  box-shadow: 0 0 0 6px rgba(250, 246, 238, 0.14);
+}
+
+.sim__faixa input[type='range']::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--creme);
+  border: 0;
+}
+
+.sim__faixa input[type='range']:focus-visible {
+  outline: 2px solid var(--sol);
+  outline-offset: 2px;
+}
+
+.sim__limites {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--creme-suave);
+}
+
+.sim__tipo {
+  margin-top: 32px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ---------- Resultado ---------- */
+.sim__rotulo {
+  font-size: 12.5px;
+  color: var(--creme-suave);
+}
+
+.sim__destaque {
+  margin-top: 6px;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 480;
+  letter-spacing: -0.02em;
+}
+
+.sim__numero {
+  display: inline-block;
+  margin: 0 0.06em;
+  color: var(--sol);
+  font-size: clamp(4.6rem, 9vw, 8.4rem);
+  font-weight: 560;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  vertical-align: -0.12em;
+  font-variant-numeric: tabular-nums;
+}
+
+.sim__dados {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 28px;
+  border-top: 1px solid var(--fio-escuro);
+}
+
+.sim__dados div {
+  padding: 16px 14px 0;
+  border-left: 1px solid var(--fio-escuro);
+}
+
+.sim__dados div:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.sim__dados dt {
+  font-size: 12px;
+  color: var(--creme-suave);
+}
+
+.sim__dados dd {
+  margin-top: 6px;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-r] {
+  display: inline-block;
+  transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
+}
+
+[data-r].trocando {
+  opacity: 0;
+  transform: translateY(6px);
+  transition-duration: 120ms;
+}
+
+.sim__preco {
+  margin-top: 26px;
+  font-size: 15.5px;
+  color: var(--creme-suave);
+}
+
+.sim__premissas {
+  margin-top: 22px;
+  border-top: 1px solid var(--fio-escuro);
+}
+
+.sim__premissas summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+}
+
+.sim__premissas summary::-webkit-details-marker {
+  display: none;
+}
+
+.sim__premissas summary::after {
+  content: '+';
+  font-size: 22px;
+  font-weight: 400;
+  transition: transform var(--medio) var(--ease-out);
+}
+
+.sim__premissas[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.sim__premissas-corpo {
+  padding-bottom: 12px;
+  font-size: 15px;
+  color: var(--creme-suave);
+}
+
+.sim__premissas-corpo li {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(250, 246, 238, 0.1);
+}
+
+.sim__premissas-corpo li span:last-child {
+  text-align: right;
+  color: var(--creme);
+}
+
+.sim__premissas-corpo .mono {
+  font-size: 13.5px;
+}
+
+.sim__premissas-corpo p {
+  margin-top: 14px;
+  line-height: 1.5;
+}
+
+.sim__premissas-corpo .selo {
+  margin-left: 4px;
+}
+
+/* ---------- Passo 2 ---------- */
+.sim__contato {
+  margin-top: clamp(56px, 7vw, 104px);
+  padding-top: clamp(32px, 4vw, 48px);
+  border-top: 1px solid var(--fio-escuro);
+}
+
+.sim__contato-titulo {
+  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+  font-weight: 520;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.sim__contato-sub {
+  margin-top: 10px;
+  color: var(--creme-suave);
+}
+
+.sim__campos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.campo--check {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  align-items: start;
+  margin-top: 22px;
+  max-width: 70ch;
+  font-size: 15px;
+}
+
+.campo--check input {
+  width: 22px;
+  height: 22px;
+  margin: 1px 0 0;
+  accent-color: var(--sol);
+}
+
+.campo--check label {
+  padding-top: 1px;
+}
+
+.campo--check .campo__erro {
+  grid-column: 2;
+  margin-top: 0;
+}
+
+.sim__enviar {
+  margin-top: 28px;
+}
+
+.sim__erros {
+  margin-top: 22px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid #ffb4a2;
+  background: rgba(255, 180, 162, 0.08);
+}
+
+.sim__erros:focus-visible {
+  outline: 2px solid var(--sol);
+}
+
+.sim__erros-titulo {
+  font-weight: 540;
+}
+
+.sim__erros ul {
+  margin-top: 6px;
+}
+
+.sim__erros a {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  color: #ffc9bb;
+}
+
+.sim__ok {
+  margin-top: 22px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: rgba(250, 246, 238, 0.08);
+}
+
+.sim__ok a {
+  font-weight: 540;
+}
+
+@media (max-width: 900px) {
+  .sim__grade {
+    grid-template-columns: 1fr;
+  }
+
+  .sim__campos {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .sim__dados {
+    grid-template-columns: 1fr;
+  }
+
+  .sim__dados div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--fio-escuro);
+  }
+
+  .sim__dados dd {
+    margin: 0;
+    text-align: right;
+  }
+
+  .sim__enviar {
+    width: 100%;
+    justify-content: space-between;
+    white-space: normal;
+    line-height: 1.2;
+  }
+}
