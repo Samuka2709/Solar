@@ -6,9 +6,20 @@ export function render() {
   const rt = empresa.responsavelTecnico;
   const temRt = preenchido(rt.nome) && preenchido(rt.crea);
   const fotos = empresa.equipe.filter((p) => preenchido(p.foto));
+  const ilu = !fotos.length && empresa.fotoIlustrativa;
   return `<section class="secao secao--creme equipe" id="equipe" data-tema="claro" aria-labelledby="equipe-titulo">
   <div class="equipe__grade">
-    <h2 class="titulo-secao" id="equipe-titulo">Quem faz</h2>
+    <div class="equipe__lado">
+      <h2 class="titulo-secao" id="equipe-titulo">Quem faz</h2>
+      ${
+        ilu
+          ? `<figure class="equipe__ilustrativa">
+        <img src="${ilu.src}" srcset="${ilu.srcset}" sizes="(max-width: 900px) 100vw, 40vw" width="${ilu.w}" height="${ilu.h}" alt="${esc(ilu.alt)}" loading="lazy" decoding="async">
+        <figcaption>${selo('foto ilustrativa', 'Foto ilustrativa, não é da equipe')}</figcaption>
+      </figure>`
+          : ''
+      }
+    </div>
     <div class="equipe__texto">
       ${empresa.sobre.map((f) => `<p>${f}</p>`).join('\n      ')}
       <p>${empresa.tambem}</p>

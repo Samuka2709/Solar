@@ -67,7 +67,38 @@
   gap: clamp(24px, 5vw, 88px);
 }
 
+.equipe__ilustrativa {
+  position: relative;
+  margin-top: clamp(28px, 4vw, 48px);
+}
+
+.equipe__ilustrativa img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.equipe__ilustrativa figcaption {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.equipe__ilustrativa .selo {
+  background: var(--creme);
+  border-color: transparent;
+  color: var(--tinta-2);
+  opacity: 0.92;
+}
+
+.equipe__grade {
+  align-items: start;
+}
+
 .equipe__texto {
+  align-self: end;
   display: grid;
   gap: 14px;
   max-width: 58ch;

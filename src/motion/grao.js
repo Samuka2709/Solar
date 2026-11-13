@@ -1,4 +1,4 @@
-/* Grão de filme: um ladrilho de ruído de 180 px, o único do site. */
+/* Grão de filme: um ladrilho de ruído de 180 px, parado e sutil, o único do site. */
 export function iniciarGrao() {
   const lado = 180;
   const c = document.createElement('canvas');
@@ -8,7 +8,7 @@ export function iniciarGrao() {
   const img = ctx.createImageData(lado, lado);
   const d = img.data;
   for (let i = 0; i < d.length; i += 4) {
-    const v = 128 + (Math.random() - 0.5) * 255;
+    const v = 128 + (Math.random() - 0.5) * 140;
     d[i] = d[i + 1] = d[i + 2] = v;
     d[i + 3] = 255;
   }

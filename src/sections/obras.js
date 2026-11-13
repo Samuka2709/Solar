@@ -52,7 +52,7 @@ export function iniciarObras(secao) {
     if (!o) return;
     origem = botao;
     const fotos = o.fotos?.length
-      ? `<div class="obra-dialogo__fotos">${o.fotos.map((f) => `<img src="${f.src}" width="${f.w}" height="${f.h}" alt="${esc(f.alt)}" loading="lazy" decoding="async">`).join('')}</div>`
+      ? `<div class="obra-dialogo__fotos">${o.fotos.map((f) => `<img src="${f.src}"${f.srcset ? ` srcset="${f.srcset}" sizes="(max-width: 960px) 100vw, 920px"` : ''} width="${f.w}" height="${f.h}" alt="${esc(f.alt)}" decoding="async">`).join('')}</div>`
       : `<div class="obra-dialogo__fotos">${foto(o, true)}</div>`;
     const conta = o.contaAntesDepois
       ? `<div class="obra-dialogo__conta">
@@ -67,7 +67,7 @@ export function iniciarObras(secao) {
       ${fotos}
       <div class="obra-dialogo__texto">
         <h2 class="obra-dialogo__titulo" id="obra-dialogo-titulo">${o.bairro}, ${o.cidade}</h2>
-        ${o.exemplo ? `<p class="obra-dialogo__exemplo">${selo()} Obra de exemplo, para mostrar como a página vai ficar.</p>` : ''}
+        ${o.exemplo ? `<p class="obra-dialogo__exemplo">${selo()} Obra e foto de exemplo, para mostrar como a página vai ficar.</p>` : ''}
         <dl class="obra-dialogo__dados">
           <div><dt class="mono">Potência</dt><dd>${formatarNumero(o.kwp, 1)} kWp</dd></div>
           <div><dt class="mono">Módulos</dt><dd>${o.modulos} × 550 W</dd></div>

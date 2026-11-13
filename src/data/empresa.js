@@ -36,6 +36,15 @@ export const empresa = {
   ],
   // Só fotos reais, em obra: { nome, funcao, foto: '/img/equipe/x.webp', w, h, alt }
   equipe: [],
+  // Foto ILUSTRATIVA (Unsplash) para apresentar o modelo; aparece com selo e
+  // some quando houver fotos reais em `equipe`. Troque antes de publicar.
+  fotoIlustrativa: {
+    src: '/img/equipe/instalacao-1280.webp',
+    srcset: '/img/equipe/instalacao-640.webp 640w, /img/equipe/instalacao-1280.webp 1280w',
+    w: 1280,
+    h: 960,
+    alt: 'Dois instaladores montando painéis solares sobre um telhado',
+  },
 
   // Compromissos: só os que a empresa cumpre de verdade. [CONFIRMAR] cada um.
   compromissos: [

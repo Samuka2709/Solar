@@ -306,29 +306,12 @@ a {
   background-repeat: repeat;
   background-size: 180px 180px;
   mix-blend-mode: soft-light;
-  opacity: 0.3;
-  animation: grao 1s steps(1, end) infinite;
-}
-
-@keyframes grao {
-  0% { transform: translate(0, 0); }
-  10% { transform: translate(-63px, 41px); }
-  20% { transform: translate(37px, -88px); }
-  30% { transform: translate(-112px, -17px); }
-  40% { transform: translate(84px, 66px); }
-  50% { transform: translate(-29px, 121px); }
-  60% { transform: translate(140px, -52px); }
-  70% { transform: translate(-91px, -130px); }
-  80% { transform: translate(18px, 97px); }
-  90% { transform: translate(102px, 12px); }
+  /* Parado e sutil: costura as camadas sem chiar como TV */
+  opacity: 0.12;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .grao {
-    animation: none;
   }
 }

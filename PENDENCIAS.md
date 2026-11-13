@@ -24,7 +24,7 @@ Legenda:
 | `respostaEm` = "até um dia útil" | [CONFIRMAR] | Contato final |
 | `sobre` (3 frases) | [CONFIRMAR] | "Quem faz" |
 | `compromissos` (3 frases) | [CONFIRMAR] | "O que vai no seu telhado". Deixe só os que a empresa cumpre de verdade |
-| `equipe` (fotos reais em obra) | [PREENCHER] | "Quem faz". Sem fotos, a seção fica só com texto |
+| `equipe` (fotos reais em obra) | [PREENCHER] | "Quem faz". Enquanto estiver vazio, aparece `fotoIlustrativa` (Unsplash, com o selo "foto ilustrativa"). Para publicar uma empresa real, preencha `equipe` ou apague `fotoIlustrativa` |
 
 > **Sem WhatsApp nem e-mail configurados**, os botões de contato abrem `wa.me/?text=…`: o WhatsApp abre com a mensagem pronta, mas a pessoa escolhe o contato. Funciona, mas não chega à empresa. **Preencha o WhatsApp antes de publicar.**
 
@@ -44,8 +44,8 @@ Legenda:
 - [CONFIRMAR] Intervalos: 1–3, 4–8, 9–30, 31–33 e 34–45 dias. O trecho da distribuidora é o que mais varia.
 
 ## 5. Obras (`src/data/obras.js`)
-- [CONFIRMAR] As 5 obras atuais são **exemplos** (selo "exemplo" e moldura "foto da obra"): Setor Bueno, Jardim América, Vila Brasília (Aparecida), Setor Sul, Trindade rural.
-- [PREENCHER] Obras reais: fotos próprias em WebP ou AVIF com `srcset`, bairro, cidade, kWp, módulos e mês de ligação. **Nada de banco de imagens.**
+- [CONFIRMAR] As 5 obras atuais são **exemplos** (selo "exemplo"): Setor Bueno, Jardim América, Vila Brasília (Aparecida), Setor Sul, Trindade rural.
+- [PREENCHER] As fotos são **ilustrativas, do Unsplash** (ver `CREDITOS.md`), só para apresentar o modelo. Para uma empresa real, troque pelas fotos das obras dela: WebP ou AVIF em 640 e 1280 px, mais bairro, cidade, kWp, módulos e mês de ligação. Sem foto, o card volta para a moldura "foto da obra".
 - [PREENCHER] Conta antes e depois: só se documentada e **autorizada** pelo cliente, com os dados pessoais já borrados na imagem.
 
 ## 6. Equipamentos (`src/data/equipamentos.js`)
