@@ -2,6 +2,7 @@
 import { premissas, simular } from '../data/premissas.js';
 import { formatarNumero, formatarReais, lerReais, mascaraTelefone } from '../lib/formato.js';
 import { linkContato } from '../lib/whatsapp.js';
+import { MAX_MODULOS } from './simulacao.render.js';
 
 const NOMES_TIPO = { casa: 'Casa', comercio: 'Comércio', rural: 'Rural' };
 
@@ -11,6 +12,24 @@ export function iniciarSimulacao(secao) {
   const chips = [...secao.querySelectorAll('[data-tipo]')];
   const saida = Object.fromEntries([...secao.querySelectorAll('[data-r]')].map((el) => [el.dataset.r, el]));
   const preco = secao.querySelector('.sim__preco');
+  const modulos = [...secao.querySelectorAll('[data-sim-modulos] .modulo')];
+  const mais = secao.querySelector('[data-sim-mais]');
+  let ligados = modulos.filter((m) => m.classList.contains('modulo--ligado')).length;
+
+  // os painéis novos entram em sequência, a partir do último aceso; os que saem, do fim para trás
+  const desenharModulos = (n) => {
+    const alvo = Math.min(n, MAX_MODULOS);
+    modulos.forEach((m, i) => {
+      const ligar = i < alvo;
+      if (ligar === m.classList.contains('modulo--ligado')) return;
+      const atraso = ligar ? (i - ligados) * 28 : (ligados - 1 - i) * 18;
+      m.style.transitionDelay = `${Math.min(Math.max(atraso, 0), 420)}ms`;
+      m.classList.toggle('modulo--ligado', ligar);
+    });
+    ligados = alvo;
+    mais.hidden = n <= MAX_MODULOS;
+    mais.textContent = n > MAX_MODULOS ? `+${n - MAX_MODULOS}` : '';
+  };
 
   let tipo = 'casa';
   let valor = premissas.contaPadrao;
@@ -42,6 +61,7 @@ export function iniciarSimulacao(secao) {
     trocar(saida.consumo, formatarNumero(resultado.consumo));
     trocar(saida.kwp, formatarNumero(resultado.kwp, 1));
     trocar(saida.geracao, formatarNumero(resultado.geracaoMes));
+    desenharModulos(resultado.paineis);
   };
 
   const agendar = () => {

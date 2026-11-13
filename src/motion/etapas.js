@@ -1,13 +1,26 @@
-/* Fio de progresso da régua de 45 dias, ligado à posição do scroll (sem tempo próprio). */
+/*
+ * Régua de 45 dias: o fio de progresso acompanha o scroll (sem tempo próprio)
+ * e cada etapa acende quando o fio chega na marca dela.
+ * Com movimento reduzido, a régua aparece inteira e todas as etapas acesas.
+ */
 export function iniciarEtapas(secao) {
   const regua = secao.querySelector('[data-regua]');
   const fio = secao.querySelector('[data-regua-fio]');
   if (!regua || !fio) return;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+  const etapas = [...regua.querySelectorAll('.regua__etapa')];
   const vertical = matchMedia('(max-width: 900px)');
   let agendado = false;
   let ultimo = -1;
+  let limites = [];
+
+  // posição de cada marca ao longo da régua, de 0 a 1
+  const medir = () => {
+    limites = etapas.map((li) =>
+      vertical.matches ? li.offsetTop / regua.offsetHeight : li.offsetLeft / regua.offsetWidth
+    );
+  };
 
   const atualizar = () => {
     agendado = false;
@@ -22,6 +35,7 @@ export function iniciarEtapas(secao) {
     if (k === ultimo) return;
     ultimo = k;
     fio.style.transform = vertical.matches ? `scaleY(${v.toFixed(3)})` : `scaleX(${v.toFixed(3)})`;
+    etapas.forEach((li, i) => li.classList.toggle('acesa', v > 0 && v >= limites[i]));
   };
 
   const agendar = () => {
@@ -29,6 +43,9 @@ export function iniciarEtapas(secao) {
     agendado = true;
     requestAnimationFrame(atualizar);
   };
+
+  medir();
+  regua.classList.add('regua--viva');
 
   let ligado = false;
   new IntersectionObserver(([e]) => {
@@ -41,9 +58,12 @@ export function iniciarEtapas(secao) {
     }
     agendar();
   }).observe(regua);
-  vertical.addEventListener('change', () => {
+  const refazer = () => {
+    medir();
     ultimo = -1;
     agendar();
-  });
+  };
+  vertical.addEventListener('change', refazer);
+  addEventListener('resize', refazer);
   agendar();
 }

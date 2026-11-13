@@ -17,14 +17,18 @@
 .secao--tinta + *,
 .contato + * { --fundo-ant: var(--tinta); }
 
+/*
+ * A faixa fica DENTRO do topo da seção (no padding de cima, que é sempre maior):
+ * o content-visibility corta tudo que sai da caixa, então ela não pode ficar acima.
+ */
 .secao:not(.caso)::before,
 .secao + .rodape::before {
   content: '';
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 100%;
-  height: clamp(72px, 9vw, 140px);
+  top: 0;
+  height: var(--costura);
   background: linear-gradient(
     180deg,
     var(--fundo-ant, var(--fundo)) 0%,
@@ -34,6 +38,21 @@
     var(--fundo) 100%
   );
   pointer-events: none;
+}
+
+:root {
+  --costura: clamp(72px, 9vw, 140px);
+}
+
+/* alturas fracionárias deixavam um fio de 1 px do fundo creme entre seções escuras */
+main > section + section,
+main + .rodape {
+  margin-top: -1px;
+}
+
+/* o rodapé tem padding menor: abre espaço para a faixa nas páginas internas */
+.secao + .rodape {
+  padding-top: calc(72px + var(--costura));
 }
 
 /* ================= Depoimentos ================= */

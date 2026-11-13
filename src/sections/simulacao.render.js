@@ -3,6 +3,12 @@ import { empresa } from '../data/empresa.js';
 import { formatarNumero, formatarReais } from '../lib/formato.js';
 import { seta, selo } from './comum.js';
 
+/** Vagas desenhadas no telhado do simulador; acima disso aparece "+N". */
+export const MAX_MODULOS = 30;
+
+const modulos = (n) =>
+  Array.from({ length: MAX_MODULOS }, (_, i) => `<span class="modulo${i < n ? ' modulo--ligado' : ''}"></span>`).join('');
+
 export function render() {
   const r = simular(premissas.contaPadrao, 'casa');
   const tipos = [
@@ -44,6 +50,10 @@ export function render() {
     <div class="sim__resultado" aria-live="polite" aria-atomic="true" data-sim-resultado>
       <p class="sim__rotulo mono">Painéis de ${premissas.potenciaPainelW} W</p>
       <p class="sim__destaque">cerca de <span class="sim__numero" data-r="paineis">${r.paineis}</span> painéis</p>
+      <div class="sim__telhado" aria-hidden="true">
+        <div class="sim__modulos" data-sim-modulos>${modulos(r.paineis)}</div>
+        <span class="sim__mais mono" data-sim-mais hidden></span>
+      </div>
       <dl class="sim__dados">
         <div><dt class="mono">Consumo estimado</dt><dd>cerca de <span data-r="consumo">${formatarNumero(r.consumo)}</span> kWh/mês</dd></div>
         <div><dt class="mono">Potência</dt><dd>cerca de <span data-r="kwp">${formatarNumero(r.kwp, 1)}</span> kWp</dd></div>

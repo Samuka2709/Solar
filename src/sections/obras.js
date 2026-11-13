@@ -15,6 +15,27 @@ export function iniciarObras(secao) {
   const conteudo = secao.querySelector('[data-obra-conteudo]');
   const reduzido = matchMedia('(prefers-reduced-motion: reduce)');
 
+  /* ---------- Entrada: as fotos se revelam em sequência, de baixo para cima ---------- */
+  if (!reduzido.matches && grade.getBoundingClientRect().top > innerHeight * 0.85) {
+    itens.forEach((li, i) => li.style.setProperty('--atraso', `${Math.min(i * 90, 360)}ms`));
+    grade.classList.add('obras__grade--antes');
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        obs.disconnect();
+        grade.classList.add('obras__grade--revelar');
+        requestAnimationFrame(() => grade.classList.remove('obras__grade--antes'));
+        // depois da entrada, sem atrasos: o filtro e o hover respondem na hora
+        setTimeout(() => {
+          grade.classList.remove('obras__grade--revelar');
+          itens.forEach((li) => li.style.removeProperty('--atraso'));
+        }, 1600);
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(grade);
+  }
+
   /* ---------- Filtros ---------- */
   let trocando;
   const aplicar = (filtro) => {

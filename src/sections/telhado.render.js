@@ -2,8 +2,9 @@ import { equipamentos } from '../data/equipamentos.js';
 import { empresa, preenchido } from '../data/empresa.js';
 import { selo } from './comum.js';
 
+// a caixa de dentro anima (escala) sem brigar com o translate da de fora
 const marca = (n, x, y) =>
-  `<g class="corte__marca" transform="translate(${x} ${y})"><circle r="15"/><text y="5" text-anchor="middle">${n}</text></g>`;
+  `<g class="corte__marca" data-peca="${n}" transform="translate(${x} ${y})"><g class="corte__marca-in"><circle r="15"/><text y="5" text-anchor="middle">${n}</text></g></g>`;
 
 /* Corte do telhado da casa do hero, desenhado em linha. */
 const corte = `<svg class="corte" viewBox="0 0 640 430" role="img" aria-labelledby="corte-titulo">
@@ -62,7 +63,7 @@ export function render() {
         preenchido(e.marca) ? `<span>Marca: ${e.marca}</span>` : '',
         preenchido(e.garantia) ? `<span>Garantia: ${e.garantia}</span>` : '',
       ].filter(Boolean);
-      return `<li class="peca">
+      return `<li class="peca" data-peca="${i + 1}">
         <span class="peca__n mono" aria-hidden="true">${i + 1}</span>
         <div>
           <h3 class="peca__nome">${e.nome}</h3>

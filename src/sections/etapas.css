@@ -114,3 +114,26 @@
     transform: none !important;
   }
 }
+
+/* Régua viva (só com JS e movimento liberado): a etapa acende quando o fio chega */
+.regua--viva .regua__dias,
+.regua--viva .regua__nome,
+.regua--viva .regua__frase {
+  opacity: 0.45;
+  transition: opacity 320ms var(--ease-out);
+}
+
+.regua--viva .regua__marca {
+  transition: background-color 320ms var(--ease-out), transform 320ms var(--ease-out);
+}
+
+.regua--viva .acesa .regua__dias,
+.regua--viva .acesa .regua__nome,
+.regua--viva .acesa .regua__frase {
+  opacity: 1;
+}
+
+.regua--viva .acesa .regua__marca {
+  background: var(--tinta);
+  transform: scale(1.2);
+}

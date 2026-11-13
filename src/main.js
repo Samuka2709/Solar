@@ -40,6 +40,8 @@ iniciarFixo();
 
 /* JS das seções carregado quando a seção se aproxima */
 const preguicosos = {
+  caso: () => import('./sections/caso.js').then((m) => m.iniciarCaso),
+  telhado: () => import('./sections/telhado.js').then((m) => m.iniciarTelhado),
   'como-funciona': () => import('./motion/etapas.js').then((m) => m.iniciarEtapas),
   simulacao: () => import('./sections/simulacao.js').then((m) => m.iniciarSimulacao),
   obras: () => import('./sections/obras.js').then((m) => m.iniciarObras),

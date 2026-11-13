@@ -4,11 +4,12 @@ import { botao } from './comum.js';
 
 export function render() {
   const dados = [
-    ['Painéis', `${s.paineis} × ${s.potenciaPainelW} W`],
-    ['Potência', `${formatarNumero(s.potenciaKwp, 1)} kWp`],
-    ['Geração', `${s.geracaoDiaKwh} kWh/dia`],
-    ['No mês', `${s.geracaoMesKwh} kWh`],
-    ['Conta', `${formatarReais(s.contaAntes)} → ${formatarReais(s.contaDepois)}`],
+    // data-conta: o número conta até o valor quando a linha entra na tela (caso.js)
+    ['Painéis', `<span data-conta="${s.paineis}">${s.paineis}</span> × ${s.potenciaPainelW} W`],
+    ['Potência', `<span data-conta="${s.potenciaKwp}" data-casas="1">${formatarNumero(s.potenciaKwp, 1)}</span> kWp`],
+    ['Geração', `<span data-conta="${s.geracaoDiaKwh}">${s.geracaoDiaKwh}</span> kWh/dia`],
+    ['No mês', `<span data-conta="${s.geracaoMesKwh}">${s.geracaoMesKwh}</span> kWh`],
+    ['Conta', `${formatarReais(s.contaAntes)} → R$&nbsp;<span data-conta="${s.contaDepois}" data-de="${s.contaAntes}">${s.contaDepois}</span>`],
     ['Retorno', s.retorno],
   ];
   return `<section class="secao secao--creme-2 caso" id="caso" data-tema="claro" aria-labelledby="caso-titulo">

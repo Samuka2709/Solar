@@ -142,13 +142,6 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .obra__foto {
-    transition: transform 240ms var(--ease-out);
-  }
-
-  .obra:hover .obra__foto {
-    transform: scale(0.99);
-  }
 
   .obra:hover .obra__abrir {
     text-decoration: underline;
@@ -343,5 +336,37 @@
 
   .obra-dialogo__dados div:nth-child(n + 3) {
     margin-top: 14px;
+  }
+}
+
+/* ---------- Fotos se revelam em sequência quando a grade entra na tela ---------- */
+.obra__foto {
+  clip-path: inset(0 0 0 0 round 14px);
+}
+
+.obras__grade--revelar .obra__foto {
+  transition: clip-path 900ms var(--ease-out) var(--atraso, 0ms);
+}
+
+.obras__grade--revelar .obra__info {
+  transition: opacity 500ms var(--ease-out) calc(var(--atraso, 0ms) + 250ms);
+}
+
+.obras__grade--antes .obra__foto {
+  clip-path: inset(100% 0 0 0 round 14px);
+}
+
+.obras__grade--antes .obra__info {
+  opacity: 0;
+}
+
+/* zoom suave da foto dentro da moldura */
+.obra__img {
+  transition: transform 700ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .obra:hover .obra__img {
+    transform: scale(1.045);
   }
 }
