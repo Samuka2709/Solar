@@ -43,7 +43,7 @@ export const empresa = {
     srcset: '/img/equipe/instalacao-640.webp 640w, /img/equipe/instalacao-1280.webp 1280w',
     w: 1280,
     h: 960,
-    alt: 'Dois instaladores montando painéis solares sobre um telhado',
+    alt: 'Instalador fixando painéis solares com uma parafusadeira',
   },
 
   // Compromissos: só os que a empresa cumpre de verdade. [CONFIRMAR] cada um.

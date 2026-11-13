@@ -20,15 +20,15 @@ const foto = (nome, alt) => ({
 
 export const obras = [
   { id: 'setor-bueno', tipo: 'casas', bairro: 'Setor Bueno', cidade: 'Goiânia', kwp: 5.5, modulos: 10, ligacao: 'agosto de 2026', telhado: 'Cerâmico', exemplo: true, contaAntesDepois: null,
-    fotos: [foto('setor-bueno', 'Painéis solares sobre um telhado de telha de barro')] },
-  { id: 'jardim-america', tipo: 'casas', bairro: 'Jardim América', cidade: 'Goiânia', kwp: 4.4, modulos: 8, ligacao: 'julho de 2026', telhado: 'Telha de concreto', exemplo: true, contaAntesDepois: null,
-    fotos: [foto('jardim-america', 'Casa com painéis solares na água do telhado')] },
-  { id: 'vila-brasilia', tipo: 'comercio', bairro: 'Vila Brasília', cidade: 'Aparecida de Goiânia', kwp: 11, modulos: 20, ligacao: 'junho de 2026', telhado: 'Metálico', exemplo: true, contaAntesDepois: null,
-    fotos: [foto('vila-brasilia', 'Prédio baixo de tijolo com painéis solares em todo o telhado')] },
+    fotos: [foto('setor-bueno', 'Painéis solares sobre um telhado de telha de barro, com arco-íris ao fundo')] },
+  { id: 'jardim-america', tipo: 'casas', bairro: 'Jardim América', cidade: 'Goiânia', kwp: 4.4, modulos: 8, ligacao: 'julho de 2026', telhado: 'Cerâmico', exemplo: true, contaAntesDepois: null,
+    fotos: [foto('jardim-america', 'Telhados de barro de casas vizinhas, uma delas com painéis solares')] },
+  { id: 'vila-brasilia', tipo: 'comercio', bairro: 'Vila Brasília', cidade: 'Aparecida de Goiânia', kwp: 11, modulos: 20, ligacao: 'junho de 2026', telhado: 'Telha metálica ondulada', exemplo: true, contaAntesDepois: null,
+    fotos: [foto('vila-brasilia', 'Duas fileiras de painéis solares sobre o telhado de telha ondulada de um galpão')] },
+  { id: 'trindade-rural', tipo: 'rural', bairro: 'Zona rural', cidade: 'Trindade', kwp: 8.8, modulos: 16, ligacao: 'abril de 2026', telhado: 'Estrutura no solo', exemplo: true, contaAntesDepois: null,
+    fotos: [foto('trindade-rural', 'Painéis solares em estrutura no chão, sobre capim seco')] },
   { id: 'setor-sul', tipo: 'casas', bairro: 'Setor Sul', cidade: 'Goiânia', kwp: 3.3, modulos: 6, ligacao: 'maio de 2026', telhado: 'Cerâmico', exemplo: true, contaAntesDepois: null,
     fotos: [foto('setor-sul', 'Telhados de barro de um bairro residencial, um deles com painéis solares')] },
-  { id: 'trindade-rural', tipo: 'rural', bairro: 'Zona rural', cidade: 'Trindade', kwp: 8.8, modulos: 16, ligacao: 'abril de 2026', telhado: 'Estrutura no solo', exemplo: true, contaAntesDepois: null,
-    fotos: [foto('trindade-rural', 'Fileiras de painéis solares sob um céu com nuvens')] },
 ];
 
 export const filtrosObras = [
