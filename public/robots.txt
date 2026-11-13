@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zenite.example/sitemap.xml
+Sitemap: https://solar-six-lyart.vercel.app/sitemap.xml

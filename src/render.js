@@ -41,3 +41,4 @@ export function renderizar(nome) {
   if (!fn) throw new Error(`Seção desconhecida: ${nome}`);
   return fn();
 }
+export { empresa } from './data/empresa.js';

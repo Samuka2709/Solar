@@ -23,7 +23,7 @@
 .dados {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  margin-top: clamp(48px, 6vw, 88px);
+  margin-top: clamp(40px, 4.5vw, 72px);
   border-top: 1px solid var(--fio-claro);
   border-bottom: 1px solid var(--fio-claro);
 }
@@ -64,7 +64,6 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 18px 26px;
-  margin-top: clamp(40px, 5vw, 64px);
 }
 
 .caso__dica {

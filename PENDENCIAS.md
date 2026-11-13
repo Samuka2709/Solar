@@ -1,12 +1,14 @@
 # Pendências: o que a empresa precisa fornecer
 
-Zênite é uma marca de demonstração. O site está pronto para receber os dados reais, mas tudo abaixo ainda é exemplo ou está em branco.
+SolarisX é uma marca de demonstração. O site está pronto para receber os dados reais, mas tudo abaixo ainda é exemplo ou está em branco.
 
 Legenda:
 - **[PREENCHER]**: falta o dado. Enquanto não houver, o item **não aparece** na tela.
 - **[CONFIRMAR]**: há um valor de exemplo **na tela**, com o selo "exemplo". A empresa precisa conferir ou trocar.
 
 ## 1. Contato e dados legais (`src/data/empresa.js`)
+
+**Nome da marca:** troque só a constante `NOME` no topo de `src/data/empresa.js`. Ela vale para o hero, os títulos das páginas, a prévia do link, as mensagens do WhatsApp e a política de privacidade. O nome do hero encolhe sozinho se tiver mais de 6 letras.
 
 | Campo | Situação | Onde aparece |
 |---|---|---|
@@ -19,7 +21,7 @@ Legenda:
 | `razaoSocial` | [PREENCHER] | Rodapé, JSON-LD |
 | `cnpj` | [PREENCHER] | Rodapé, JSON-LD |
 | `responsavelTecnico.nome` e `.crea` | [PREENCHER] | "Quem faz" |
-| `site` (domínio real) | [PREENCHER] | Hoje é `https://zenite.example`. Trocar também em `index.html` (canonical, og:url, og:image, twitter:image), `politica-de-privacidade.html` (canonical), `public/robots.txt` e `public/sitemap.xml` |
+| `site` (domínio real) | [PREENCHER] | Hoje é o endereço da demonstração (`https://solar-six-lyart.vercel.app`). As páginas puxam daqui (canonical, og:url, og:image); só `public/robots.txt` e `public/sitemap.xml` precisam ser trocados à mão |
 | `prazoDias` = 45 | [CONFIRMAR] | Hero, régua, compromissos, dúvidas |
 | `respostaEm` = "até um dia útil" | [CONFIRMAR] | Contato final |
 | `sobre` (3 frases) | [CONFIRMAR] | "Quem faz" |
@@ -63,4 +65,4 @@ Legenda:
 - [CONFIRMAR] O texto-base está escrito e tem o selo "exemplo". Revisar com o jurídico e incluir razão social, CNPJ e um contato para assuntos de privacidade.
 
 ## 10. Rodapé
-- A frase "Zênite é uma marca de demonstração…" sai quando os dados forem reais (`src/sections/rodape.render.js`).
+- A frase "SolarisX é uma marca de demonstração…" sai quando os dados forem reais (`src/sections/rodape.render.js`).

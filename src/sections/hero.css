@@ -245,8 +245,9 @@
   padding: 0 var(--margem) 7.4svh;
 }
 
+/* --letras vem do render: nomes mais longos que 6 letras encolhem para caber */
 .nome {
-  font-size: min(17.6vw, 31svh);
+  font-size: min(17.6vw, 31svh, calc(124vw / var(--letras, 6)));
   font-weight: 560;
   letter-spacing: -0.055em;
   line-height: 1;
@@ -384,6 +385,19 @@
   white-space: nowrap;
 }
 
+/* Até 1180 px o nome e a frase não cabem lado a lado: o texto empilha */
+@media (max-width: 1180px) {
+  .hero__texto {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__lado {
+    justify-self: start;
+    padding-bottom: 0;
+    margin-top: 10px;
+  }
+}
+
 /* ---------- Tablet: texto empilhado, HUD abaixo da nav ---------- */
 @media (max-width: 960px) {
   .hero__texto {
@@ -419,7 +433,7 @@
   }
 
   .nome {
-    font-size: 29vw;
+    font-size: min(29vw, calc(184vw / var(--letras, 6)));
   }
 
   .hero__lado {

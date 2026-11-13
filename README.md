@@ -1,4 +1,4 @@
-# Zênite: site de energia solar
+# SolarisX: site de energia solar
 
 Vite sem framework, multipágina. O hero é a casa numa ilha flutuante; o resto do site é calmo.
 

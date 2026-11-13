@@ -13,14 +13,16 @@ export function render() {
     ['Retorno', s.retorno],
   ];
   return `<section class="secao secao--creme-2 caso" id="caso" data-tema="claro" aria-labelledby="caso-titulo">
-  <h2 class="titulo-secao caso__titulo" id="caso-titulo">A conta de luz caiu<br> de ${formatarReais(s.contaAntes)} para ${formatarReais(s.contaDepois)}.</h2>
+  <div class="cabeca">
+    <h2 class="titulo-secao caso__titulo" id="caso-titulo">A conta de luz caiu<br> de ${formatarReais(s.contaAntes)} para ${formatarReais(s.contaDepois)}.</h2>
+    <div class="caso__acao">
+      ${botao('Simular minha conta', '#simulacao', { tinta: true })}
+      <p class="caso__dica">Com a sua conta de luz em mãos, a simulação leva dois minutos.</p>
+    </div>
+  </div>
   <dl class="dados">
     ${dados.map(([r, v]) => `<div class="dados__item"><dt class="mono dados__rotulo">${r}</dt><dd class="dados__valor">${v}</dd></div>`).join('\n    ')}
   </dl>
   <p class="caso__nota">${s.nota}</p>
-  <div class="caso__acao">
-    ${botao('Simular minha conta', '#simulacao', { tinta: true })}
-    <p class="caso__dica">Com a sua conta de luz em mãos, a simulação leva dois minutos.</p>
-  </div>
 </section>`;
 }

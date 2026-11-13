@@ -1,13 +1,16 @@
 /*
- * Dados da empresa. Zênite é uma marca de demonstração.
+ * Dados da empresa. A marca (NOME) é de demonstração.
  * Tudo que ainda não é real está marcado com [PREENCHER] (falta o dado) ou
  * [CONFIRMAR] (há um valor de exemplo que a empresa precisa conferir).
  * Campo com [PREENCHER] nunca aparece na tela: o site esconde o item.
  */
 export const P = '[PREENCHER]';
 
+// Nome da marca: troque só aqui (aparece no hero, títulos, mensagens e páginas).
+const NOME = 'SolarisX';
+
 export const empresa = {
-  nome: 'Zênite',
+  nome: NOME,
   cidade: 'Goiânia',
   uf: 'GO',
   regiao: 'Goiânia e região',
@@ -26,11 +29,11 @@ export const empresa = {
   razaoSocial: P,
   cnpj: P,
   responsavelTecnico: { nome: P, crea: P },
-  site: 'https://zenite.example', // [PREENCHER] domínio real (canonical, sitemap, Open Graph)
+  site: 'https://solar-six-lyart.vercel.app', // [PREENCHER] domínio real da empresa; hoje é o endereço da demonstração na Vercel (canonical, sitemap, Open Graph)
 
   // Quem faz. Três ou quatro frases sobre a empresa. [CONFIRMAR] cada uma.
   sobre: [
-    'A Zênite projeta e instala energia solar em casas de Goiânia e região.',
+    `A ${NOME} projeta e instala energia solar em casas de Goiânia e região.`,
     'A mesma equipe faz a visita técnica, o projeto e a instalação, e cuida do pedido na distribuidora até a troca do medidor.',
     'O preço sai fechado e por escrito depois da visita, com o prazo no contrato.',
   ],

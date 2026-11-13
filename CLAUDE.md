@@ -1,6 +1,6 @@
-# CLAUDE.md — Zênite
+# CLAUDE.md — SolarisX
 
-Guia do hero da Zênite (energia solar em Goiânia, casa numa ilha flutuante). Leia antes de mexer em qualquer arquivo. O prompt descreve o hero; este guia guarda as regras e os números que fazem ele parecer uma cena só, e não camadas coladas.
+Guia do hero da SolarisX (energia solar em Goiânia, casa numa ilha flutuante). Leia antes de mexer em qualquer arquivo. O prompt descreve o hero; este guia guarda as regras e os números que fazem ele parecer uma cena só, e não camadas coladas.
 
 ## O que não pode se perder
 1. **Uma cena só.** Ilha e nuvens têm a mesma luz (sol da manhã pela direita). Nada de borda dura, halo branco ou sombra projetada nos recortes: use os PNG/WebP de `arquivos/` como estão (já limpos: sem ilhas de alfa soltas, base das nuvens desfeita seguindo o contorno).

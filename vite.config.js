@@ -14,7 +14,8 @@ const paginas = {
 /*
  * As seções são renderizadas em HTML estático a partir de src/data/ (bom para
  * SEO e para a primeira pintura). No HTML, cada <!--secao:nome--> é trocado
- * pela marcação de src/sections/<nome>.render.js.
+ * pela marcação de src/sections/<nome>.render.js, e {{nome}} / {{site}} pelos
+ * dados de src/data/empresa.js.
  */
 function secoesEstaticas() {
   let servidor;
@@ -24,7 +25,7 @@ function secoesEstaticas() {
     return import(url + '?t=' + Date.now());
   };
   return {
-    name: 'zenite-secoes',
+    name: 'marca-secoes',
     configureServer(s) {
       servidor = s;
       s.watcher.on('change', (arq) => {
@@ -37,8 +38,12 @@ function secoesEstaticas() {
     transformIndexHtml: {
       order: 'pre',
       async handler(html) {
-        const { renderizar } = await carregar();
-        return html.replace(/<!--secao:([a-z-]+)-->/g, (_, nome) => renderizar(nome));
+        const { renderizar, empresa } = await carregar();
+        return html
+          .replace(/<!--secao:([a-z-]+)-->/g, (_, nome) => renderizar(nome))
+          // nome e domínio da marca vêm só de src/data/empresa.js
+          .replaceAll('{{nome}}', empresa.nome)
+          .replaceAll('{{site}}', empresa.site);
       },
     },
   };
@@ -47,7 +52,7 @@ function secoesEstaticas() {
 /* Preload da fonte Archivo (latin) com o nome que o build gerar. */
 function preloadFonte() {
   return {
-    name: 'zenite-preload-fonte',
+    name: 'marca-preload-fonte',
     apply: 'build',
     transformIndexHtml: {
       order: 'post',

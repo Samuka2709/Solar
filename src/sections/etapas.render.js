@@ -5,7 +5,10 @@ import { selo } from './comum.js';
 export function render() {
   const dias = (e) => (e.de === e.ate ? `Dia ${e.de}` : `Dias ${e.de}–${e.ate}`);
   return `<section class="secao secao--creme etapas" id="como-funciona" data-tema="claro" aria-labelledby="etapas-titulo">
-  <h2 class="titulo-secao etapas__titulo" id="etapas-titulo">${empresa.prazoDias} dias, do telhado ao medidor novo</h2>
+  <div class="cabeca">
+    <h2 class="titulo-secao etapas__titulo" id="etapas-titulo">${empresa.prazoDias} dias, do telhado ao medidor novo</h2>
+    <p class="etapas__nota">${etapasExemplo ? selo() + ' ' : ''}A etapa da distribuidora é a que mais varia: a análise e a vistoria seguem os prazos dela.</p>
+  </div>
   <div class="regua" data-regua>
     <div class="regua__trilho" aria-hidden="true"><div class="regua__fio" data-regua-fio></div></div>
     <ol class="regua__lista">
@@ -21,6 +24,5 @@ export function render() {
         .join('\n      ')}
     </ol>
   </div>
-  <p class="etapas__nota">${etapasExemplo ? selo() + ' ' : ''}A etapa da distribuidora é a que mais varia: a análise e a vistoria seguem os prazos dela.</p>
 </section>`;
 }

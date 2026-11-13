@@ -1,4 +1,5 @@
 /* Simulador: passo 1 (cálculo na tela) e passo 2 (contato pelo WhatsApp). */
+import { empresa } from '../data/empresa.js';
 import { premissas, simular } from '../data/premissas.js';
 import { formatarNumero, formatarReais, lerReais, mascaraTelefone } from '../lib/formato.js';
 import { linkContato } from '../lib/whatsapp.js';
@@ -189,7 +190,7 @@ export function iniciarSimulacao(secao) {
     const primeiroNome = campos.nome.value.trim().split(/\s+/)[0];
     const kwpTxt = formatarNumero(resultado.kwp, 1);
     const mensagem =
-      `Olá! Fiz a simulação no site da Zênite. ` +
+      `Olá! Fiz a simulação no site da ${empresa.nome}. ` +
       `Imóvel: ${NOMES_TIPO[tipo]}. ` +
       `Conta média: ${formatarReais(valor).replace(' ', ' ')}. ` +
       `Cidade: ${campos.cidade.value.trim()}. ` +

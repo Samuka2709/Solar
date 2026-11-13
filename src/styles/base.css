@@ -155,6 +155,27 @@ a {
   padding-inline: var(--margem);
 }
 
+/*
+ * Cabeça de seção: título à esquerda e um complemento (ação, nota) à direita,
+ * alinhado ao pé do título. Em tela larga, ocupa a metade que ficava vazia.
+ */
+.cabeca {
+  display: grid;
+  gap: 24px clamp(32px, 5vw, 96px);
+}
+
+@media (min-width: 1000px) {
+  .cabeca {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+
+  .cabeca > :last-child {
+    justify-self: end;
+    padding-bottom: 0.4em;
+  }
+}
+
 .secao--creme {
   background: var(--creme);
   color: var(--tinta);

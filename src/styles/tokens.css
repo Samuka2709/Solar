@@ -29,7 +29,7 @@
 
   /* Espaço */
   --margem: clamp(16px, 2.3vw, 40px);
-  --secao-y: clamp(96px, 12vw, 176px);
+  --secao-y: clamp(96px, 10vw, 148px);
   --medida: 70ch;
   --nav-altura: 48px;
 

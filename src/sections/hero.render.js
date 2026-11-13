@@ -54,7 +54,7 @@ export function render() {
     </div>
 
     <div class="hero__texto" data-hero-texto>
-      <h1 class="nome" id="hero-nome"><span class="so-leitor">${empresa.nome}</span><span class="nome__linha" aria-hidden="true">${nome}<span class="nome__sol">${asterisco('asterisco nome__asterisco')}</span></span></h1>
+      <h1 class="nome" id="hero-nome" style="--letras: ${[...empresa.nome].length}"><span class="so-leitor">${empresa.nome}</span><span class="nome__linha" aria-hidden="true">${nome}<span class="nome__sol">${asterisco('asterisco nome__asterisco')}</span></span></h1>
       <div class="hero__lado">
         <p class="hero__frase">${linhas.map((l) => `<span class="linha"><span class="linha__in">${l} </span></span>`).join('')}</p>
         <div class="hero__acoes">

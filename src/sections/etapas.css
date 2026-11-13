@@ -4,7 +4,7 @@
 
 .regua {
   position: relative;
-  margin-top: clamp(56px, 7vw, 104px);
+  margin-top: clamp(48px, 5vw, 80px);
 }
 
 .regua__trilho {
@@ -70,8 +70,8 @@
 }
 
 .etapas__nota {
-  margin-top: clamp(40px, 5vw, 64px);
-  font-size: 14.5px;
+  max-width: 44ch;
+  font-size: 15px;
   color: var(--tinta-2);
 }
 
