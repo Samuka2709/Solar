@@ -12,7 +12,7 @@
  */
 const foto = (nome, alt) => ({
   src: `/img/obras/${nome}-1280.webp`,
-  srcset: `/img/obras/${nome}-640.webp 640w, /img/obras/${nome}-1280.webp 1280w`,
+  srcset: `/img/obras/${nome}-640.webp 640w, /img/obras/${nome}-960.webp 960w, /img/obras/${nome}-1280.webp 1280w`,
   w: 1280,
   h: 960,
   alt,

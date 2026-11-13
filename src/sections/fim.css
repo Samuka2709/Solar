@@ -1,3 +1,10 @@
+/* Seções longe da tela não entram no primeiro layout (o caso fica de fora: ele sobe por cima do hero) */
+.secao:not(.caso),
+.rodape {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
 /* ================= Costuras entre seções: nada termina em linha reta ================= */
 .secao--creme { --fundo: var(--creme); }
 .secao--creme-2 { --fundo: var(--creme-2); }
@@ -52,6 +59,15 @@
   align-items: center;
   gap: 14px;
   margin-top: 36px;
+}
+
+.depo__seta svg {
+  width: 16px;
+  height: 16px;
+}
+
+.depo__seta--ant svg {
+  transform: scaleX(-1);
 }
 
 .depo__controles .chip {
@@ -336,7 +352,6 @@
 
 .contato__sub .selo {
   margin-left: 4px;
-  font-size: 11.5px;
 }
 
 .contato__acoes {

@@ -40,7 +40,7 @@ export const empresa = {
   // some quando houver fotos reais em `equipe`. Troque antes de publicar.
   fotoIlustrativa: {
     src: '/img/equipe/instalacao-1280.webp',
-    srcset: '/img/equipe/instalacao-640.webp 640w, /img/equipe/instalacao-1280.webp 1280w',
+    srcset: '/img/equipe/instalacao-640.webp 640w, /img/equipe/instalacao-960.webp 960w, /img/equipe/instalacao-1280.webp 1280w',
     w: 1280,
     h: 960,
     alt: 'Instalador fixando painéis solares com uma parafusadeira',

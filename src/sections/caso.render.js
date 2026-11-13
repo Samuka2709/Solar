@@ -12,7 +12,6 @@ export function render() {
     ['Retorno', s.retorno],
   ];
   return `<section class="secao secao--creme-2 caso" id="caso" data-tema="claro" aria-labelledby="caso-titulo">
-  <p class="caso__rotulo">O sistema da casa lá de cima</p>
   <h2 class="titulo-secao caso__titulo" id="caso-titulo">A conta de luz caiu<br> de ${formatarReais(s.contaAntes)} para ${formatarReais(s.contaDepois)}.</h2>
   <dl class="dados">
     ${dados.map(([r, v]) => `<div class="dados__item"><dt class="mono dados__rotulo">${r}</dt><dd class="dados__valor">${v}</dd></div>`).join('\n    ')}

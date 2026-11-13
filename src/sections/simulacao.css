@@ -51,7 +51,7 @@
 }
 
 .campo__entrada::placeholder {
-  color: rgba(250, 246, 238, 0.5);
+  color: rgba(250, 246, 238, 0.62);
 }
 
 .campo__entrada:focus-visible {

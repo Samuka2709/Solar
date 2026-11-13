@@ -16,12 +16,6 @@
   pointer-events: none;
 }
 
-.caso__rotulo {
-  font-size: 15px;
-  color: var(--tinta-2);
-  margin-bottom: 18px;
-}
-
 .caso__titulo {
   max-width: 16ch;
 }

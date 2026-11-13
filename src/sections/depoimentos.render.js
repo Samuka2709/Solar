@@ -1,5 +1,6 @@
 import { depoimentos } from '../data/depoimentos.js';
 import { esc } from '../lib/formato.js';
+import { seta } from './comum.js';
 
 const data = (iso) => {
   const [a, m] = iso.split('-');
@@ -29,9 +30,9 @@ export function render() {
   ${
     depoimentos.length > 1
       ? `<div class="depo__controles">
-    <button type="button" class="chip" data-depo-ant aria-label="Avaliação anterior">←</button>
+    <button type="button" class="chip" data-depo-ant aria-label="Avaliação anterior"><span class="depo__seta depo__seta--ant">${seta}</span></button>
     <span class="mono" data-depo-pos aria-live="polite">1 / ${depoimentos.length}</span>
-    <button type="button" class="chip" data-depo-prox aria-label="Próxima avaliação">→</button>
+    <button type="button" class="chip" data-depo-prox aria-label="Próxima avaliação"><span class="depo__seta">${seta}</span></button>
   </div>`
       : ''
   }

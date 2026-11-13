@@ -23,6 +23,32 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+::selection {
+  background: var(--tinta);
+  color: var(--creme);
+}
+
+.secao--tinta ::selection,
+.contato ::selection,
+.rodape ::selection,
+.hero ::selection {
+  background: var(--creme);
+  color: var(--tinta);
+}
+
+html {
+  accent-color: var(--tinta);
+  caret-color: currentColor;
+  scrollbar-color: color-mix(in oklab, var(--tinta-2) 70%, transparent) var(--creme-2);
+}
+
+p,
+li,
+dd,
+figcaption {
+  text-wrap: pretty;
+}
+
 img,
 svg {
   display: block;
@@ -151,13 +177,12 @@ a {
   height: 22px;
   padding: 0 9px;
   border-radius: 999px;
-  border: 1px solid currentColor;
+  border: 1px solid color-mix(in oklab, currentColor 45%, transparent);
   font-size: 12px;
   font-weight: 500;
   line-height: 1;
   letter-spacing: 0.01em;
   vertical-align: middle;
-  opacity: 0.72;
   white-space: nowrap;
 }
 

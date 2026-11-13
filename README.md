@@ -9,6 +9,7 @@ npm run build      # gera dist/
 npm run preview    # http://localhost:5191 (serve dist/)
 npm run shots      # prints de checagem em prints/ (precisa do preview rodando)
 node scripts/teclado.mjs   # teste só com teclado + link do WhatsApp gerado
+node scripts/medir.mjs 3   # LCP, CLS, bytes e quadros perdidos (celular, 4G lento, 3 rodadas)
 ```
 
 - **Textos e números**: `src/data/`. O que falta está em `PENDENCIAS.md`.
