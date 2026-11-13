@@ -14,7 +14,7 @@ const paginas = {
 /*
  * As seções são renderizadas em HTML estático a partir de src/data/ (bom para
  * SEO e para a primeira pintura). No HTML, cada <!--secao:nome--> é trocado
- * pela marcação de src/sections/<nome>.render.js, e {{nome}} / {{site}} pelos
+ * pela marcação de src/sections/<nome>.render.js, e {{nome}} / {{site}} / {{cidade}} / {{uf}} / {{regiao}} pelos
  * dados de src/data/empresa.js.
  */
 function secoesEstaticas() {
@@ -43,7 +43,10 @@ function secoesEstaticas() {
           .replace(/<!--secao:([a-z-]+)-->/g, (_, nome) => renderizar(nome))
           // nome e domínio da marca vêm só de src/data/empresa.js
           .replaceAll('{{nome}}', empresa.nome)
-          .replaceAll('{{site}}', empresa.site);
+          .replaceAll('{{site}}', empresa.site)
+          .replaceAll('{{cidade}}', empresa.cidade)
+          .replaceAll('{{uf}}', empresa.uf)
+          .replaceAll('{{regiao}}', empresa.regiao);
       },
     },
   };

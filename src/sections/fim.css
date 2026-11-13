@@ -410,8 +410,64 @@ main + .rodape {
 
 .rodape__grade {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  gap: 32px;
+  grid-template-columns: 1.2fr 0.7fr 1fr 1.5fr;
+  gap: 32px clamp(24px, 3vw, 48px);
+}
+
+.rodape__atende {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  color: rgba(241, 231, 214, 0.86);
+}
+
+.rodape__resposta {
+  color: rgba(241, 231, 214, 0.7);
+}
+
+.rodape .rodape__zap {
+  justify-self: start;
+  gap: 8px;
+  height: 44px;
+  margin-top: 10px;
+  padding: 0 18px 0 14px;
+  border-radius: 999px;
+  background: var(--creme);
+  color: var(--tinta);
+  font-weight: 520;
+  white-space: nowrap;
+  transition: transform 160ms var(--ease-out);
+}
+
+.rodape__zap svg {
+  width: 20px;
+  height: 20px;
+}
+
+.rodape .rodape__zap:hover {
+  text-decoration: none;
+}
+
+.rodape__zap:active {
+  transform: scale(0.97);
+}
+
+.rodape__mapa {
+  margin: 0;
+}
+
+.rodape__mapa iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 0;
+  border-radius: 14px;
+  background: var(--tinta-2);
+}
+
+.rodape__mapa figcaption {
+  margin-top: 6px;
+  font-size: 13.5px;
 }
 
 .rodape__nome {
@@ -468,12 +524,16 @@ main + .rodape {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1100px) {
   .rodape__grade {
     grid-template-columns: 1fr 1fr;
   }
+}
 
-  .rodape__marca {
+@media (max-width: 760px) {
+  .rodape__marca,
+  .rodape__atende,
+  .rodape__mapa {
     grid-column: 1 / -1;
   }
 }

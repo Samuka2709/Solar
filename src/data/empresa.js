@@ -11,12 +11,12 @@ const NOME = 'SolarisX';
 
 export const empresa = {
   nome: NOME,
-  cidade: 'Goiânia',
-  uf: 'GO',
-  regiao: 'Goiânia e região',
+  cidade: 'Ilhéus',
+  uf: 'BA',
+  regiao: 'Ilhéus e região',
   prazoDias: 45, // [CONFIRMAR] prazo do contrato, da visita à troca do medidor
   respostaEm: 'até um dia útil', // [CONFIRMAR]
-  frase: 'Energia solar residencial em Goiânia, GO.',
+  frase: 'Energia solar residencial em Ilhéus, BA.',
 
   // Contato. WhatsApp só com dígitos, com DDI e DDD (ex.: 5562912345678).
   whatsapp: P,
@@ -33,7 +33,7 @@ export const empresa = {
 
   // Quem faz. Três ou quatro frases sobre a empresa. [CONFIRMAR] cada uma.
   sobre: [
-    `A ${NOME} projeta e instala energia solar em casas de Goiânia e região.`,
+    `A ${NOME} projeta e instala energia solar em casas de Ilhéus e região.`,
     'A mesma equipe faz a visita técnica, o projeto e a instalação, e cuida do pedido na distribuidora até a troca do medidor.',
     'O preço sai fechado e por escrito depois da visita, com o prazo no contrato.',
   ],

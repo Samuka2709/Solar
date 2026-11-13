@@ -4,8 +4,8 @@
  * nem retorno: diz que a proposta com preço sai depois da visita.
  */
 export const premissas = {
-  tarifa: 0.96, // R$/kWh com impostos, Equatorial Goiás [CONFIRMAR]
-  irradiacao: 5.6, // horas de sol pleno por dia, média anual de Goiânia [CONFIRMAR]
+  tarifa: 1.02, // R$/kWh com impostos, Neoenergia Coelba. Estimativa: confira na fatura [CONFIRMAR]
+  irradiacao: 5.0, // horas de sol pleno por dia, média anual de Ilhéus (Atlas Brasileiro de Energia Solar, ~4,5 a 5,0) [CONFIRMAR]
   perdas: 0.125, // temperatura, cabos, inversor e sujeira [CONFIRMAR]
   potenciaPainelW: 550, // [CONFIRMAR]
   // kWh que a distribuidora cobra mesmo com o sistema (custo de disponibilidade)
@@ -16,7 +16,7 @@ export const premissas = {
   precoConfirmado: false, // [CONFIRMAR] ligue só com preço por kWp e tarifa conferidos
 };
 
-/** kWh gerados por kWp por dia, já descontadas as perdas (~4,9 em Goiânia). */
+/** kWh gerados por kWp por dia, já descontadas as perdas (~4,4 em Ilhéus). */
 export const produtividade = +(premissas.irradiacao * (1 - premissas.perdas)).toFixed(2);
 
 /**

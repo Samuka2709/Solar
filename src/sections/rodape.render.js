@@ -1,6 +1,6 @@
 import { empresa, preenchido } from '../data/empresa.js';
 import { linksNav } from './nav.render.js';
-import { asterisco } from './comum.js';
+import { asterisco, iconeWhatsapp } from './comum.js';
 import { linkContato, mensagemPadrao } from '../lib/whatsapp.js';
 import { esc } from '../lib/formato.js';
 
@@ -24,6 +24,11 @@ export function render(base = '') {
     preenchido(e.cnpj) && `CNPJ ${esc(e.cnpj)}`,
   ].filter(Boolean);
 
+  // Mapa: o endereço, quando houver; até lá, a cidade (área de atendimento)
+  const local = preenchido(e.endereco) ? `${e.endereco}, ${e.cidade}, ${e.uf}` : `${e.cidade}, ${e.uf}`;
+  const q = encodeURIComponent(local);
+  const zap = linkContato(mensagemPadrao());
+
   return `<footer class="rodape" data-tema="escuro">
   <div class="rodape__grade">
     <div class="rodape__marca">
@@ -36,7 +41,17 @@ export function render(base = '') {
         <li><a href="${base}#contato">Contato</a></li>
       </ul>
     </nav>
-    ${contato.length ? `<div class="rodape__col"><p class="rodape__titulo">Contato</p><ul>${contato.join('')}</ul></div>` : ''}
+    <div class="rodape__col rodape__atende">
+      <p class="rodape__titulo">Atendimento</p>
+      <p>${esc(e.regiao)}</p>
+      ${preenchido(e.respostaEm) ? `<p class="rodape__resposta">Resposta em ${esc(e.respostaEm)}.</p>` : ''}
+      ${contato.length ? `<ul>${contato.join('')}</ul>` : ''}
+      <a class="rodape__zap" href="${zap.href}" target="_blank" rel="noopener">${iconeWhatsapp}<span>Falar no WhatsApp</span></a>
+    </div>
+    <figure class="rodape__mapa">
+      <iframe src="https://www.google.com/maps?q=${q}&amp;z=13&amp;hl=pt-BR&amp;output=embed" title="Mapa: ${esc(local)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <figcaption><a href="https://www.google.com/maps/search/?api=1&amp;query=${q}" target="_blank" rel="noopener">Abrir no Google Maps</a></figcaption>
+    </figure>
   </div>
   <div class="rodape__base">
     ${legal.length ? `<p>${legal.join(' · ')}</p>` : ''}
