@@ -84,6 +84,15 @@
   -webkit-user-drag: none;
 }
 
+/* celular: nuvem que chegou depois da ilha entra num fade (nuvens.js) */
+.nuvem img {
+  transition: opacity 0.9s ease-out;
+}
+
+.nuvem img.chega {
+  opacity: 0;
+}
+
 .nuvem--e img {
   transform: scaleX(-1);
 }

@@ -9,8 +9,40 @@ const reduzido = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 let modoAtual = null;
 
+/*
+ * Celular: a ilha é o maior elemento da primeira tela (LCP) e, no 4G, as seis
+ * nuvens (~160 KB) dividiam a banda com ela. Lá as nuvens só começam a baixar
+ * depois que a ilha chega (ou após 1,2 s) e cada uma aparece num fade curto
+ * quando termina de carregar, em vez de surgir de repente.
+ */
+function ilhaPronta(palco) {
+  const img = palco.querySelector('.ilha__img');
+  if (!img || (img.complete && img.naturalWidth)) return Promise.resolve();
+  return Promise.race([
+    new Promise((ok) => {
+      img.addEventListener('load', ok, { once: true });
+      img.addEventListener('error', ok, { once: true });
+    }),
+    new Promise((ok) => setTimeout(ok, 1200)),
+  ]);
+}
+
+function adiar(palco) {
+  const imgs = [...palco.querySelectorAll('.nuvem img[data-src]')];
+  ilhaPronta(palco).then(() =>
+    imgs.forEach((img) => {
+      const pronto = () => img.classList.remove('chega');
+      img.addEventListener('load', pronto, { once: true });
+      img.addEventListener('error', pronto, { once: true });
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src');
+    })
+  );
+}
+
 function montar(palco, modo) {
   const layout = modo === 'celular' ? celular : desktop;
+  const depois = modo === 'celular';
   for (const [nome, lista] of Object.entries(layout)) {
     const alvo = palco.querySelector(`[data-nuvens="${nome}"]`);
     if (!alvo) continue;
@@ -18,10 +50,11 @@ function montar(palco, modo) {
     alvo.innerHTML = lista
       .map((c, i) => {
         const [w, h] = tamanhos[c.n];
-        return `<div class="nuvem${c.e ? ' nuvem--e' : ''}" data-i="${i}"><img src="/img/nuvem-${c.n}.webp" width="${w}" height="${h}" alt="" decoding="async"${longe ? ' loading="lazy"' : ''}></div>`;
+        return `<div class="nuvem${c.e ? ' nuvem--e' : ''}" data-i="${i}"><img ${depois ? 'class="chega" data-src' : 'src'}="/img/nuvem-${c.n}.webp" width="${w}" height="${h}" alt="" decoding="async"${longe ? ' loading="lazy"' : ''}></div>`;
       })
       .join('');
   }
+  if (depois) adiar(palco);
 }
 
 function posicionar(palco, modo) {

@@ -71,6 +71,7 @@ Estado inicial aplicado antes do primeiro quadro (`gsap.set`), senão a cena pis
 ## Regras de qualidade
 - Mobile tão cuidado quanto desktop; nada de rolagem horizontal.
 - Ilha com `fetchpriority="high"` e `preload`. As nuvens são pequenas (13–47 KB).
+- No celular a ilha é o LCP: as nuvens só começam a baixar depois dela (`nuvens.js`, fade ao chegar), e o `sizes` pede 66vw em telas ≥ 2,5x para não baixar a ilha de 1446 px (517 KB). LCP medido (`scripts/medir.mjs`): 2,58 s → 1,79 s. Já testado e descartado: recomprimir a `ilha-800` (147 → 137 KB, o alfa pesa mais que a cor).
 - Só `transform` e `opacity` por quadro. Filtros (desfoque, tom) fixos em cada imagem, nunca animados.
 - Marca fictícia: não invente selos, prêmios, depoimentos nem CNPJ.
 

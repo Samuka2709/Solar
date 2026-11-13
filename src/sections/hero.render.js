@@ -26,13 +26,14 @@ export function render() {
     ${camada('longe', `<div class="nuvens" data-nuvens="longe"></div>`)}
     ${camada('horizonte', `<div class="nuvens" data-nuvens="horizonte"></div><div class="nevoa nevoa--horizonte"></div>`)}
     ${camada(
+      // celular de tela 3x: o sizes pede 66vw para baixar a ilha-800 (147 KB) em vez da de 1446 px (517 KB); na tela cheia ela continua nítida
       'ilha',
       `<div class="ilha">
         <div class="ilha__nevoa"></div>
         <div class="ilha__flutua">
           <img class="ilha__img" src="/img/ilha.webp" width="1446" height="994" fetchpriority="high" decoding="async"
             srcset="/img/ilha-800.webp 800w, /img/ilha-1100.webp 1100w, /img/ilha.webp 1446w"
-            sizes="(max-width: 760px) 98vw, min(62vw, 96svh)"
+            sizes="(max-width: 760px) and (min-resolution: 2.5dppx) 66vw, (max-width: 760px) 98vw, min(62vw, 96svh)"
             alt="Casa térrea com dez painéis solares no telhado, sobre um pedaço de terra vermelha flutuando no céu">
           <div class="ilha__luz" aria-hidden="true"></div>
         </div>
