@@ -1,7 +1,7 @@
 /* Obras: filtros em chips e painel de detalhe em <dialog>. */
 import { obras } from '../data/obras.js';
 import { formatarNumero, esc } from '../lib/formato.js';
-import { foto, precisaLarga } from './obras.render.js';
+import { foto, colunas, temDestaque } from './obras.render.js';
 import { selo } from './comum.js';
 
 const NOMES = { casas: 'casas', comercio: 'comércio', rural: 'rural' };
@@ -21,10 +21,11 @@ export function iniciarObras(secao) {
     const visiveis = itens.filter((li) => filtro === 'todas' || li.dataset.tipo === filtro);
     itens.forEach((li) => {
       li.hidden = !visiveis.includes(li);
-      li.classList.remove('obra--grande', 'obra--larga');
+      li.classList.remove('obra--grande');
     });
-    visiveis[0]?.classList.add('obra--grande');
-    if (precisaLarga(visiveis.length)) visiveis.at(-1).classList.add('obra--larga');
+    if (temDestaque(visiveis.length)) visiveis[0].classList.add('obra--grande');
+    grade.classList.remove('obras__grade--c2', 'obras__grade--c3', 'obras__grade--c4');
+    grade.classList.add(`obras__grade--c${colunas(visiveis.length)}`);
     aviso.textContent = `${visiveis.length} ${visiveis.length === 1 ? 'obra' : 'obras'}${filtro === 'todas' ? '' : ` de ${NOMES[filtro]}`}.`;
   };
 

@@ -252,13 +252,11 @@
   line-height: 1;
   color: var(--creme);
   margin-left: -0.04em;
-  /* sombra fora da máscara das letras: segue o contorno, sem borda reta */
-  filter: drop-shadow(0 0.015em 0.06em rgba(20, 35, 58, 0.3));
+  text-shadow: 0 0.015em 0.06em rgba(20, 35, 58, 0.3);
 }
 
 .nome__linha {
   display: block;
-  overflow: hidden;
   padding-top: 0.06em;
   /* folga para o tracking negativo da última letra não cortar */
   padding-right: 0.06em;
@@ -305,8 +303,16 @@
 
 .linha {
   display: block;
-  overflow: hidden;
   white-space: nowrap;
+}
+
+/* A máscara das letras e linhas só existe durante a entrada; depois sai para
+   a sombra do texto não ser cortada em linha reta */
+.js-entrada .nome__linha,
+.js-entrada .linha,
+.entrando .nome__linha,
+.entrando .linha {
+  overflow: hidden;
 }
 
 .linha__in {

@@ -58,9 +58,10 @@ export async function entrada(hero, imagensNuvens) {
   ]);
   await Promise.race([espera, new Promise((ok) => setTimeout(ok, 3000))]);
 
+  palco.classList.add('entrando');
   raiz.classList.remove('js-entrada');
 
-  const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+  const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, onComplete: () => palco.classList.remove('entrando') });
   tl.to(ceu, { opacity: 1, duration: 1.4, ease: 'power2.inOut' }, 0)
     .to(longe, { opacity: 1, y: 0, duration: 2.2 }, 0.3)
     .to(horizonte, { opacity: 1, y: 0, duration: 2.4 }, 0.45)

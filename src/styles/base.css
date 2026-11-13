@@ -330,9 +330,7 @@ a {
   pointer-events: none;
   background-repeat: repeat;
   background-size: 180px 180px;
-  mix-blend-mode: soft-light;
-  /* Parado e sutil: costura as camadas sem chiar como TV */
-  opacity: 0.12;
+  /* Parado e sutil: costura as camadas sem chiar como TV. O alfa já vem no ladrilho. */
 }
 
 @media (prefers-reduced-motion: reduce) {
