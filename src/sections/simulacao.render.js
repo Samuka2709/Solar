@@ -1,4 +1,4 @@
-import { premissas, produtividade, simular } from '../data/premissas.js';
+import { premissas, produtividade, simular, economiaArredondada } from '../data/premissas.js';
 import { empresa } from '../data/empresa.js';
 import { formatarNumero, formatarReais } from '../lib/formato.js';
 import { seta, selo } from './comum.js';
@@ -17,6 +17,7 @@ export function render() {
     ['rural', 'Rural'],
   ];
   const min = premissas.minimoKwh;
+  const eco = economiaArredondada(r.economiaMes);
   return `<section class="secao secao--tinta simulacao" id="simulacao" data-tema="escuro" aria-labelledby="sim-titulo">
   <div class="sim__cabeca">
     <h2 class="titulo-secao" id="sim-titulo">Quanto o seu telhado pode gerar</h2>
@@ -59,6 +60,12 @@ export function render() {
         <div><dt class="mono">Potência</dt><dd>cerca de <span data-r="kwp">${formatarNumero(r.kwp, 1)}</span> kWp</dd></div>
         <div><dt class="mono">Geração</dt><dd>cerca de <span data-r="geracao">${formatarNumero(r.geracaoMes)}</span> kWh/mês</dd></div>
       </dl>
+      <div class="sim__economia">
+        <p class="sim__rotulo mono">Economia média estimada</p>
+        <p class="sim__economia-valor">cerca de R$&nbsp;<span data-r="economia">${formatarNumero(eco.mes)}</span> por mês</p>
+        <p class="sim__economia-ano">Em média, R$&nbsp;<span data-r="economia-ano">${formatarNumero(eco.ano)}</span> em um ano.</p>
+        <p class="sim__economia-aviso">É uma média estimada, não uma promessa. O valor real de cada mês muda com o consumo, o tempo, o telhado e a tarifa.</p>
+      </div>
       <p class="sim__preco">A proposta com preço sai depois da visita técnica.</p>
       <details class="sim__premissas">
         <summary>Como calculamos</summary>
@@ -69,6 +76,7 @@ export function render() {
             <li><span>Perdas (calor, cabos, inversor, sujeira)</span><span class="mono">${formatarNumero(premissas.perdas * 100, 1)}%, já descontadas</span></li>
             <li><span>Custo mínimo que continua na conta</span><span class="mono">${min.casa} kWh (casa), ${min.comercio} kWh (comércio)</span></li>
             <li><span>Iluminação pública</span><span>continua na fatura, à parte</span></li>
+            <li><span>Economia</span><span>energia compensada × tarifa</span></li>
           </ul>
           <p>O sistema cobre o consumo menos a taxa mínima, que a distribuidora cobra de qualquer jeito. O número de painéis é arredondado para cima. ${selo('valores de exemplo', 'Premissas de exemplo, a confirmar pela empresa')}</p>
         </div>

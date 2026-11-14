@@ -239,8 +239,38 @@
   transition-duration: 120ms;
 }
 
+.sim__economia {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--fio-escuro);
+}
+
+.sim__economia-valor {
+  margin-top: 8px;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight: 520;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.sim__economia-ano {
+  margin-top: 8px;
+  font-size: 15.5px;
+  color: var(--creme-suave);
+  font-variant-numeric: tabular-nums;
+}
+
+.sim__economia-aviso {
+  margin-top: 6px;
+  max-width: 52ch;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--creme-suave);
+}
+
 .sim__preco {
-  margin-top: 26px;
+  margin-top: 18px;
   font-size: 15.5px;
   color: var(--creme-suave);
 }
@@ -428,6 +458,13 @@
   .sim__dados dd {
     margin: 0;
     text-align: right;
+  }
+
+  /* a última linha dos dados já tem fio embaixo */
+  .sim__economia {
+    margin-top: 24px;
+    padding-top: 0;
+    border-top: 0;
   }
 
   .sim__enviar {

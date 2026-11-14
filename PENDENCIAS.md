@@ -39,7 +39,7 @@ Legenda:
 - [CONFIRMAR] Irradiação: 5,0 h de sol pleno por dia em Ilhéus (Atlas Brasileiro de Energia Solar; estudos locais dão de 4,5 a 5,0); perdas de 12,5%. Com isso, a produtividade fica em 4,4 kWh por kWp por dia.
 - [CONFIRMAR] Potência do painel: 550 W.
 - [CONFIRMAR] Custo mínimo: 50 kWh para casa e rural, 100 kWh para comércio.
-- [CONFIRMAR] `precoConfirmado: false`. Enquanto estiver assim, o site **não mostra economia em reais nem retorno**. Para mostrar, é preciso definir o preço por kWp e escrever esse cálculo.
+- [CONFIRMAR] `precoConfirmado: false`. Enquanto estiver assim, o site **não mostra preço nem retorno**. A economia em reais aparece sempre, como **média estimada** (energia compensada × tarifa), com o aviso de que não é promessa; ela depende da `tarifa` estar certa.
 - Observação: o sistema é dimensionado para o consumo **menos** a taxa mínima, arredondando para cima. Com isso, R$ 780 dá 10 painéis (bate com o caso) e R$ 650 dá **9 painéis (4,95 kWp)**, como no exemplo do briefing. Se a empresa dimensiona de outro jeito, ajuste `simular()`.
 
 ## 4. Régua de 45 dias (`src/data/etapas.js`)

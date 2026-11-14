@@ -465,11 +465,6 @@ main + .rodape {
   background: var(--tinta-2);
 }
 
-.rodape__mapa figcaption {
-  margin-top: 6px;
-  font-size: 13.5px;
-}
-
 .rodape__nome {
   display: flex;
   align-items: flex-start;
@@ -546,9 +541,9 @@ main + .rodape {
   z-index: 90;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  height: 48px;
-  padding: 0 18px 0 14px;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
   border-radius: 999px;
   background: var(--tinta);
   color: var(--creme);
@@ -568,6 +563,27 @@ main + .rodape {
   height: 22px;
 }
 
+/* só o círculo, para não cobrir o texto das seções; o nome aparece ao lado no hover ou no foco */
+.fixo__texto {
+  position: absolute;
+  right: calc(100% + 10px);
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--tinta);
+  white-space: nowrap;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateX(6px);
+  pointer-events: none;
+  transition: opacity 160ms var(--ease-out), transform 160ms var(--ease-out);
+}
+
+.fixo:hover .fixo__texto,
+.fixo:focus-visible .fixo__texto {
+  opacity: 1;
+  transform: none;
+}
+
 .fixo--visivel {
   opacity: 1;
   transform: none;
@@ -585,14 +601,7 @@ main + .rodape {
   outline-offset: 3px;
 }
 
-@media (max-width: 760px) {
-  .fixo {
-    width: 52px;
-    height: 52px;
-    padding: 0;
-    justify-content: center;
-  }
-
+@media (hover: none) {
   .fixo__texto {
     display: none;
   }

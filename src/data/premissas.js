@@ -1,7 +1,8 @@
 /*
  * Parâmetros do simulador. Todos de exemplo, marcados [CONFIRMAR].
- * Enquanto precoConfirmado for false, o site não mostra economia em reais
- * nem retorno: diz que a proposta com preço sai depois da visita.
+ * A economia em reais só depende da tarifa e aparece sempre, como estimativa.
+ * Enquanto precoConfirmado for false, o site não mostra preço nem retorno:
+ * diz que a proposta com preço sai depois da visita.
  */
 export const premissas = {
   tarifa: 1.02, // R$/kWh com impostos, Neoenergia Coelba. Estimativa: confira na fatura [CONFIRMAR]
@@ -23,6 +24,9 @@ export const produtividade = +(premissas.irradiacao * (1 - premissas.perdas)).to
  * O sistema compensa o consumo menos a taxa mínima, que a distribuidora cobra
  * de qualquer forma. Arredonda para cima no número de painéis.
  */
+/** Arredonda para "cerca de": mês de 10 em 10 reais, ano de 100 em 100. */
+export const economiaArredondada = (mes) => ({ mes: Math.round(mes / 10) * 10, ano: Math.round((mes * 12) / 100) * 100 });
+
 export function simular(conta, tipo = 'casa') {
   const consumo = conta / premissas.tarifa;
   const minimo = premissas.minimoKwh[tipo] ?? 50;
@@ -31,5 +35,7 @@ export function simular(conta, tipo = 'casa') {
   const paineis = Math.max(2, Math.ceil(kwpNecessario / (premissas.potenciaPainelW / 1000)));
   const kwp = (paineis * premissas.potenciaPainelW) / 1000;
   const geracaoMes = kwp * produtividade * 30;
-  return { consumo, paineis, kwp, geracaoMes };
+  // o que deixa de ser pago: a energia compensada (nunca mais que o consumo acima do mínimo)
+  const economiaMes = Math.min(geracaoMes, aCompensar) * premissas.tarifa;
+  return { consumo, paineis, kwp, geracaoMes, economiaMes };
 }

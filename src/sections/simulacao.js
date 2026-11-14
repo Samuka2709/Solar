@@ -1,6 +1,6 @@
 /* Simulador: passo 1 (cálculo na tela) e passo 2 (contato pelo WhatsApp). */
 import { empresa } from '../data/empresa.js';
-import { premissas, simular } from '../data/premissas.js';
+import { premissas, simular, economiaArredondada } from '../data/premissas.js';
 import { formatarNumero, formatarReais, lerReais, mascaraTelefone } from '../lib/formato.js';
 import { linkContato } from '../lib/whatsapp.js';
 import { MAX_MODULOS } from './simulacao.render.js';
@@ -62,6 +62,9 @@ export function iniciarSimulacao(secao) {
     trocar(saida.consumo, formatarNumero(resultado.consumo));
     trocar(saida.kwp, formatarNumero(resultado.kwp, 1));
     trocar(saida.geracao, formatarNumero(resultado.geracaoMes));
+    const eco = economiaArredondada(resultado.economiaMes);
+    trocar(saida.economia, formatarNumero(eco.mes));
+    trocar(saida['economia-ano'], formatarNumero(eco.ano));
     desenharModulos(resultado.paineis);
   };
 
@@ -194,7 +197,8 @@ export function iniciarSimulacao(secao) {
       `Imóvel: ${NOMES_TIPO[tipo]}. ` +
       `Conta média: ${formatarReais(valor).replace(' ', ' ')}. ` +
       `Cidade: ${campos.cidade.value.trim()}. ` +
-      `Sistema estimado: cerca de ${resultado.paineis} painéis (${kwpTxt} kWp). ` +
+      `Sistema estimado: cerca de ${resultado.paineis} painéis (${kwpTxt} kWp), ` +
+      `economia média estimada de cerca de R$ ${formatarNumero(economiaArredondada(resultado.economiaMes).mes)} por mês. ` +
       `Meu nome é ${primeiroNome}.`;
 
     // No WhatsApp o número já vai junto; no e-mail ele precisa estar no texto.

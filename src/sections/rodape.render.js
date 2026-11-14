@@ -50,7 +50,6 @@ export function render(base = '') {
     </div>
     <figure class="rodape__mapa">
       <iframe src="https://www.google.com/maps?q=${q}&amp;z=13&amp;hl=pt-BR&amp;output=embed" title="Mapa: ${esc(local)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      <figcaption><a href="https://www.google.com/maps/search/?api=1&amp;query=${q}" target="_blank" rel="noopener">Abrir no Google Maps</a></figcaption>
     </figure>
   </div>
   <div class="rodape__base">
