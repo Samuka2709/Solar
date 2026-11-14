@@ -9,6 +9,16 @@ export const MAX_MODULOS = 30;
 const modulos = (n) =>
   Array.from({ length: MAX_MODULOS }, (_, i) => `<span class="modulo${i < n ? ' modulo--ligado' : ''}"></span>`).join('');
 
+/** Pergunta opcional do passo 2: rádios com cara de chip (nenhum marcado de início). */
+const grupoOpcoes = (nome, rotulo, opcoes, ajuda = '') => `
+      <fieldset class="opcoes">
+        <legend class="campo__rotulo">${rotulo}</legend>
+        <div class="chips">
+          ${opcoes.map((o) => `<label class="chip opcao"><input class="so-leitor" type="radio" name="${nome}" value="${o}">${o}</label>`).join('')}
+        </div>
+        ${ajuda ? `<p class="campo__ajuda">${ajuda}</p>` : ''}
+      </fieldset>`;
+
 export function render() {
   const r = simular(premissas.contaPadrao, 'casa');
   const tipos = [
@@ -109,6 +119,17 @@ export function render() {
         <input class="campo__entrada" id="sim-cidade" name="cidade" autocomplete="address-level2" value="${empresa.cidade}" required aria-describedby="sim-cidade-erro">
         <p class="campo__erro" id="sim-cidade-erro" hidden></p>
       </div>
+      <div class="campo" data-campo="bairro">
+        <label class="campo__rotulo" for="sim-bairro">Bairro <span class="campo__opcional">(opcional)</span></label>
+        <input class="campo__entrada" id="sim-bairro" name="bairro" autocomplete="address-level3">
+      </div>
+    </div>
+
+    <p class="sim__extras-sub">Se souber, marque também. Ajuda a gente a chegar com a avaliação mais certa. Tudo opcional.</p>
+    <div class="sim__extras">
+      ${grupoOpcoes('telhado', 'Tipo de telhado', ['Cerâmica', 'Fibrocimento', 'Metálico', 'Laje', 'Não sei'])}
+      ${grupoOpcoes('ligacao', 'Ligação de energia', ['Monofásica', 'Bifásica', 'Trifásica', 'Não sei'], 'Aparece na conta de luz.')}
+      ${grupoOpcoes('horario', 'Melhor horário para falar', ['Manhã', 'Tarde', 'Noite'])}
     </div>
 
     <div class="campo campo--check" data-campo="lgpd">

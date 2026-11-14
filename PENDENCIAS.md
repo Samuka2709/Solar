@@ -12,7 +12,7 @@ Legenda:
 
 | Campo | Situação | Onde aparece |
 |---|---|---|
-| `whatsapp` (só dígitos, com 55 + DDD) | [PREENCHER] | Simulador, contato final, botão fixo, dúvidas, rodapé, JSON-LD |
+| `whatsapp` (só dígitos, com 55 + DDD) | [CONFIRMAR] hoje com um número de teste do dono da demonstração; troque pelo da empresa | Simulador, contato final, botão fixo, dúvidas, rodapé, JSON-LD |
 | `email` | [PREENCHER] | Rodapé, JSON-LD; vira o canal do simulador se não houver WhatsApp |
 | `endereco` | [PREENCHER] | Rodapé, JSON-LD |
 | `horario` | [PREENCHER] | Rodapé |

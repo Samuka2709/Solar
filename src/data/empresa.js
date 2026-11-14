@@ -19,7 +19,7 @@ export const empresa = {
   frase: 'Energia solar residencial em Ilhéus, BA.',
 
   // Contato. WhatsApp só com dígitos, com DDI e DDD (ex.: 5562912345678).
-  whatsapp: P,
+  whatsapp: '5573998258544', // [CONFIRMAR] número de teste do dono da demonstração; troque pelo da empresa
   email: P,
   endereco: P,
   horario: P, // ex.: 'Segunda a sexta, 8h às 18h; sábado, 8h às 12h'

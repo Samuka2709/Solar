@@ -363,6 +363,63 @@
   margin-top: 28px;
 }
 
+.sim__campos {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.campo__opcional {
+  font-weight: 400;
+  color: var(--creme-suave);
+}
+
+/* perguntas opcionais: rádios com cara de chip */
+.sim__extras-sub {
+  margin-top: 30px;
+  font-size: 15px;
+  color: var(--creme-suave);
+}
+
+.sim__extras {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: 22px 48px;
+  margin-top: 18px;
+}
+
+@media (max-width: 1100px) {
+  .sim__campos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sim__extras {
+    grid-template-columns: 1fr;
+  }
+}
+
+.opcoes {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.opcao {
+  cursor: pointer;
+  user-select: none;
+}
+
+.opcao:has(input:checked) {
+  background: var(--creme);
+  border-color: var(--creme);
+  color: var(--tinta);
+}
+
+.opcao:has(input:focus-visible) {
+  outline: 2px solid var(--sol);
+  outline-offset: 2px;
+}
+
 .campo--check {
   display: grid;
   grid-template-columns: auto 1fr;

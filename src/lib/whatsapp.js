@@ -20,5 +20,18 @@ export function linkContato(mensagem) {
   return { href: `https://wa.me/?text=${texto}`, canal: 'whatsapp' };
 }
 
+/**
+ * Mensagem dos botões de WhatsApp fora do simulador. Já traz os campos que a
+ * empresa precisa para responder com números, para a pessoa só completar.
+ */
 export const mensagemPadrao = () =>
-  `Olá! Vim pelo site da ${empresa.nome} e quero saber quantos painéis cabem no meu telhado.`;
+  [
+    `Olá, ${empresa.nome}! Vim pelo site e quero saber quanto posso economizar com energia solar.`,
+    '',
+    'Nome: ',
+    'Cidade e bairro: ',
+    'Valor médio da conta de luz: R$ ',
+    'Tipo de imóvel (casa, comércio ou rural): ',
+    '',
+    'Se precisar, mando a foto da conta de luz por aqui.',
+  ].join('\n');

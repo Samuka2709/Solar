@@ -4,7 +4,9 @@ import { linkContato } from '../lib/whatsapp.js';
 import { esc } from '../lib/formato.js';
 
 export function render() {
-  const { href, canal } = linkContato(`Olá! Vim pelo site da ${empresa.nome} e tenho uma dúvida sobre energia solar.`);
+  const { href, canal } = linkContato(`Olá, ${empresa.nome}! Vim pelo site e tenho uma dúvida sobre energia solar:
+
+`);
   const alvo = canal === 'whatsapp' ? ' target="_blank" rel="noopener"' : '';
   return `<section class="secao secao--creme-2 duvidas" id="duvidas" data-tema="claro" aria-labelledby="duvidas-titulo">
   <div class="duvidas__grade">

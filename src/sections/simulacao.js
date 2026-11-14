@@ -190,20 +190,39 @@ export function iniciarSimulacao(secao) {
     }
     resumo.hidden = true;
 
-    const primeiroNome = campos.nome.value.trim().split(/\s+/)[0];
-    const kwpTxt = formatarNumero(resultado.kwp, 1);
-    const mensagem =
-      `Olá! Fiz a simulação no site da ${empresa.nome}. ` +
-      `Imóvel: ${NOMES_TIPO[tipo]}. ` +
-      `Conta média: ${formatarReais(valor).replace(' ', ' ')}. ` +
-      `Cidade: ${campos.cidade.value.trim()}. ` +
-      `Sistema estimado: cerca de ${resultado.paineis} painéis (${kwpTxt} kWp), ` +
-      `economia média estimada de cerca de R$ ${formatarNumero(economiaArredondada(resultado.economiaMes).mes)} por mês. ` +
-      `Meu nome é ${primeiroNome}.`;
+    // Mensagem organizada em blocos (no WhatsApp, *texto* sai em negrito).
+    // Perguntas opcionais sem resposta não entram.
+    const marcado = (nome) => form.querySelector(`input[name="${nome}"]:checked`)?.value;
+    const linha = (rotulo, v) => (v ? `${rotulo}: ${v}` : '');
+    const bairro = form.querySelector('#sim-bairro').value.trim();
+    const cidade = campos.cidade.value.trim();
+    const eco = economiaArredondada(resultado.economiaMes);
+    const blocos = [
+      [`Olá, ${empresa.nome}! Fiz a simulação no site e quero a avaliação do meu telhado.`],
+      [
+        '*Meus dados*',
+        linha('Nome', campos.nome.value.trim()),
+        linha('WhatsApp', mascaraTelefone(campos.whatsapp.value)),
+        linha('Local', bairro ? `${bairro}, ${cidade}` : cidade),
+        linha('Melhor horário', marcado('horario')?.toLowerCase()),
+      ],
+      [
+        '*Imóvel*',
+        linha('Tipo', NOMES_TIPO[tipo]),
+        linha('Telhado', marcado('telhado')?.toLowerCase()),
+        linha('Ligação', marcado('ligacao')?.toLowerCase()),
+        linha('Conta de luz média', formatarReais(valor).replace(/\u00a0/g, ' ')),
+      ],
+      [
+        '*Simulação do site*',
+        `Cerca de ${resultado.paineis} painéis (${formatarNumero(resultado.kwp, 1)} kWp)`,
+        `Economia média estimada: cerca de R$ ${formatarNumero(eco.mes)} por mês`,
+      ],
+      ['Se precisar, mando a foto da conta de luz por aqui.'],
+    ];
+    const mensagem = blocos.map((b) => b.filter(Boolean).join('\n')).join('\n\n');
 
-    // No WhatsApp o número já vai junto; no e-mail ele precisa estar no texto.
-    let { href, canal } = linkContato(mensagem);
-    if (canal === 'email') ({ href } = linkContato(`${mensagem} Meu WhatsApp: ${campos.whatsapp.value}.`));
+    const { href, canal } = linkContato(mensagem);
     okLink.href = href;
     okLink.textContent = canal === 'email' ? 'Se o e-mail não abriu, toque aqui.' : 'Se não abriu, toque aqui.';
     ok.querySelector('p').firstChild.textContent =
