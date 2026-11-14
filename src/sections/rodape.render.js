@@ -9,6 +9,9 @@ const telefone = (d) => {
   return n.length === 11 ? `(${n.slice(0, 2)}) ${n.slice(2, 7)}-${n.slice(7)}` : n;
 };
 
+/** '@perfil' a partir da URL do Instagram. */
+const arroba = (url) => `@${String(url).replace(/\/+$/, '').split('/').pop()}`;
+
 /** base = '' na home; '/' nas páginas internas, para os links de seção voltarem à home. */
 export function render(base = '') {
   const e = empresa;
@@ -17,7 +20,7 @@ export function render(base = '') {
     preenchido(e.email) && `<li><a href="mailto:${e.email}">${esc(e.email)}</a></li>`,
     preenchido(e.endereco) && `<li>${esc(e.endereco)}</li>`,
     preenchido(e.horario) && `<li>${esc(e.horario)}</li>`,
-    preenchido(e.instagram) && `<li><a href="${e.instagram}" target="_blank" rel="noopener">Instagram</a></li>`,
+    preenchido(e.instagram) && `<li><a href="${e.instagram}" target="_blank" rel="noopener">Instagram ${esc(arroba(e.instagram))}</a></li>`,
   ].filter(Boolean);
   const legal = [
     preenchido(e.razaoSocial) && esc(e.razaoSocial),

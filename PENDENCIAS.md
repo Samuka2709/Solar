@@ -16,7 +16,7 @@ Legenda:
 | `email` | [PREENCHER] | Rodapé, JSON-LD; vira o canal do simulador se não houver WhatsApp |
 | `endereco` | [PREENCHER] | Rodapé, JSON-LD |
 | `horario` | [PREENCHER] | Rodapé |
-| `instagram` (URL) | [PREENCHER] | Rodapé, JSON-LD |
+| `instagram` (URL) | [CONFIRMAR] @solarisx.ilheus é exemplo | Rodapé, JSON-LD |
 | `googleAvaliacoes` (URL do perfil) | [PREENCHER] | Reservado para os depoimentos |
 | `razaoSocial` | [PREENCHER] | Rodapé, JSON-LD |
 | `cnpj` | [PREENCHER] | Rodapé, JSON-LD |

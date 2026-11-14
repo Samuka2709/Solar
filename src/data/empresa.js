@@ -23,7 +23,7 @@ export const empresa = {
   email: P,
   endereco: P,
   horario: P, // ex.: 'Segunda a sexta, 8h às 18h; sábado, 8h às 12h'
-  instagram: P, // URL completa do perfil
+  instagram: 'https://www.instagram.com/solarisx.ilheus/', // [CONFIRMAR] @ de exemplo; troque pela URL do perfil da empresa
   googleAvaliacoes: P, // URL do perfil no Google
 
   razaoSocial: P,
